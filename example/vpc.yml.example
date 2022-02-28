@@ -1,0 +1,4 @@
+securityGroups:
+  - sg-1234
+subnets:
+  - subnet-1234

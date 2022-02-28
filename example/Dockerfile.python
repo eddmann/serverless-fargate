@@ -1,0 +1,5 @@
+FROM python:3.10.2-alpine3.15
+COPY service.python /app/service.python
+ENV PYTHONUNBUFFERED=1
+ENTRYPOINT ["python"]
+CMD ["/app/service.python"]

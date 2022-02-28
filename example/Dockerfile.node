@@ -1,0 +1,4 @@
+FROM node:17.6.0-alpine3.15
+COPY service.js /app/service.js
+ENTRYPOINT ["node"]
+CMD ["/app/service.js"]

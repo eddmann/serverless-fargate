@@ -1,0 +1,52 @@
+service: serverless-fargate-tasks
+
+frameworkVersion: '2 || 3'
+
+provider:
+  name: aws
+  region: eu-west-1
+  tags:
+    provider: tag
+  iamRoleStatements:
+    - Effect: Allow
+      Action: 'sqs:*'
+      Resource: '*'
+  iamManagedPolicies:
+    - arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess
+  ecr:
+    images:
+      python:
+        path: ./
+        file: Dockerfile.python
+      php:
+        path: ./
+        file: Dockerfile.php
+      node:
+        path: ./
+        file: Dockerfile.node
+
+plugins:
+  - ../src
+
+custom:
+  fargate:
+    vpc: ${file(./vpc.yml)}
+    tasks:
+      service-task-1:
+        image: python
+        service:
+          desiredCount: 2
+          spot: true
+        tags:
+          service: tag
+      service-task-2:
+        image: node
+      scheduled-task-1:
+        image: php
+        schedule: 'rate(1 minute)'
+        command:
+          - /app/service.php
+          - my-scheduled-task
+          - 1
+
+functions:
