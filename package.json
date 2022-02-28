@@ -1,0 +1,25 @@
+{
+  "name": "serverless-fargate-tasks",
+  "version": "0.0.1",
+  "description": "Maintain long-running Fargate tasks within your Serverless project",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eddmann/serverless-fargate-tasks.git"
+  },
+  "keywords": [
+    "serverless",
+    "fargate",
+    "aws",
+    "ecr"
+  ],
+  "author": "Edd Mann <the@eddmann.com> (https://eddmann.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eddmann/serverless-fargate-tasks/issues"
+  },
+  "homepage": "https://github.com/eddmann/serverless-fargate-tasks#readme"
+}
