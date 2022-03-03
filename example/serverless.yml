@@ -2,6 +2,8 @@ service: serverless-fargate
 
 frameworkVersion: '2 || 3'
 
+configValidationMode: error
+
 provider:
   name: aws
   region: eu-west-1
@@ -28,25 +30,24 @@ provider:
 plugins:
   - ../src
 
-custom:
-  fargate:
-    vpc: ${file(./vpc.yml)}
-    tasks:
-      service-task-1:
-        image: python
-        service:
-          desiredCount: 2
-          spot: true
-        tags:
-          service: tag
-      service-task-2:
-        image: node
-      scheduled-task-1:
-        image: php
-        schedule: 'rate(1 minute)'
-        command:
-          - /app/service.php
-          - my-scheduled-task
-          - 1
+fargate:
+  vpc: ${file(./vpc.yml)}
+  tasks:
+    service-task-1:
+      image: python
+      service:
+        desiredCount: 2
+        spot: true
+      tags:
+        service: tag
+    service-task-2:
+      image: node
+    scheduled-task-1:
+      image: php
+      schedule: 'rate(1 minute)'
+      command:
+        - /app/service.php
+        - my-scheduled-task
+        - 1
 
 functions:

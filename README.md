@@ -45,129 +45,128 @@ provider:
   tags:
     name: value
 
-custom:
-  fargate:
-    # (optional) default memory you wish to allocate to each task (if not supplied at the task level) - defaults to 0.5GB.
-    # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_size
-    memory: '0.5GB'
+fargate:
+  # (optional) default memory you wish to allocate to each task (if not supplied at the task level) - defaults to 0.5GB.
+  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_size
+  memory: '0.5GB'
 
-    # (optional) default CPU you wish to allocate to each task (if not supplied at the task level) - defaults to 256 (.25 vCPU).
-    # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_size
-    cpu: 256
+  # (optional) default CPU you wish to allocate to each task (if not supplied at the task level) - defaults to 256 (.25 vCPU).
+  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_size
+  cpu: 256
 
-    # (optional) environment variables which are added to all tasks.
-    environment:
-      name: value
+  # (optional) environment variables which are added to all tasks.
+  environment:
+    name: value
 
-    # (optional) default execution role ARN you wish to use for the task.
-    executionRoleArn: arn:aws:iam::123456:role/my-custom-execution-role
+  # (optional) default execution role ARN you wish to use for the task.
+  executionRoleArn: arn:aws:iam::123456:role/my-custom-execution-role
 
-    # (optional) default task role ARN you wish to use for the task.
-    taskRoleArn: arn:aws:iam::123456:role/my-custom-task-role
+  # (optional) default task role ARN you wish to use for the task.
+  taskRoleArn: arn:aws:iam::123456:role/my-custom-task-role
 
-    # (optional) additional role statements you wish to add to the task role, you would place statements here instead of at
-    # the provider level if you only wished them to target Fargate tasks.
-    iamRoleStatements:
-      - Effect: Allow
-        Action: 'resource:*'
-        Resource: '*'
+  # (optional) additional role statements you wish to add to the task role, you would place statements here instead of at
+  # the provider level if you only wished them to target Fargate tasks.
+  iamRoleStatements:
+    - Effect: Allow
+      Action: 'resource:*'
+      Resource: '*'
 
-    # (optional) additional managed policies you wish to add to the task role, you would place policies here instead of at
-    # the provider level if you only wished them to target Fargate tasks.
-    iamManagedPolicies:
-      - arn:aws:iam::123456:policy/my-managed-taks-policy
+  # (optional) additional managed policies you wish to add to the task role, you would place policies here instead of at
+  # the provider level if you only wished them to target Fargate tasks.
+  iamManagedPolicies:
+    - arn:aws:iam::123456:policy/my-managed-taks-policy
 
-    vpc:
-      # (optional) default security groups you wish to apply to each task.
-      securityGroups:
-        - sg-12345
+  vpc:
+    # (optional) default security groups you wish to apply to each task.
+    securityGroups:
+      - sg-12345
 
-      # (required) default subnets you wish to allocate the tasks within, either subnets are defined here or within each task.
-      # all tasks MUST be assigned subnets as Fargate operates within `awsvpc` mode.
-      subnets:
-        - subnet-1234
+    # (required) default subnets you wish to allocate the tasks within, either subnets are defined here or within each task.
+    # all tasks MUST be assigned subnets as Fargate operates within `awsvpc` mode.
+    subnets:
+      - subnet-1234
 
-      # (optional) default flag to assign a public IP to each task, this requires the supplied subnets to be public (internet) facing.
-      assignPublicIp: false
+    # (optional) default flag to assign a public IP to each task, this requires the supplied subnets to be public (internet) facing.
+    assignPublicIp: false
 
-    # (optional) additional tags you wish to apply to only Fargate task resources.
-    tags:
-      name: value
+  # (optional) additional tags you wish to apply to only Fargate task resources.
+  tags:
+    name: value
 
-    tasks:
-      my-task:
-        # (optional) unique name for the given task, defaults to the task key name.
-        name: my-task-name
+  tasks:
+    my-task:
+      # (optional) unique name for the given task, defaults to the task key name.
+      name: my-task-name
 
-        # (required) the task image you wish to run, references images built within the `ecr` section.
-        image: my-task
+      # (required) the task image you wish to run, references images built within the `ecr` section.
+      image: my-task
 
-        # (optional) execution role ARN you wish to use for the given task.
-        executionRoleArn: arn:aws:iam::123456:role/my-custom-execution-role
+      # (optional) execution role ARN you wish to use for the given task.
+      executionRoleArn: arn:aws:iam::123456:role/my-custom-execution-role
 
-        # (optional) task role ARN you wish to use for the given task.
-        taskRoleArn: arn:aws:iam::123456:role/my-custom-task-role
+      # (optional) task role ARN you wish to use for the given task.
+      taskRoleArn: arn:aws:iam::123456:role/my-custom-task-role
 
-        vpc:
-          # (optional) security groups you wish to apply to the given tasks, this overrides any default security groups supplied.
-          securityGroups:
-            - sg-12345
+      vpc:
+        # (optional) security groups you wish to apply to the given tasks, this overrides any default security groups supplied.
+        securityGroups:
+          - sg-12345
 
-          # (required) subnets you wish to allocate the given task within, either subnets are defined here or at the global `vpc` level.
-          # all tasks MUST be assigned subnets as Fargate operates within `awsvpc` mode.
-          subnets:
-            - subnet-1234
+        # (required) subnets you wish to allocate the given task within, either subnets are defined here or at the global `vpc` level.
+        # all tasks MUST be assigned subnets as Fargate operates within `awsvpc` mode.
+        subnets:
+          - subnet-1234
 
-          # (optional) flag to assign a public IP to the given task, this requires the supplied subnets to be public (internet) facing.
-          assignPublicIp: false
+        # (optional) flag to assign a public IP to the given task, this requires the supplied subnets to be public (internet) facing.
+        assignPublicIp: false
 
-        # (optional) the overridden command you wish to execute within the task container.
-        command:
-          - my-command
+      # (optional) the overridden command you wish to execute within the task container.
+      command:
+        - my-command
 
-        # (optional) the overridden entrypoint you wish to execute within the task container.
-        entryPoint:
-          - my-entrypoint
+      # (optional) the overridden entrypoint you wish to execute within the task container.
+      entryPoint:
+        - my-entrypoint
 
-        # (optional) memory you wish to allocate to the given task, defaults to the globally supplied memory value.
-        # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_size
-        memory: '0.5GB'
+      # (optional) memory you wish to allocate to the given task, defaults to the globally supplied memory value.
+      # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_size
+      memory: '0.5GB'
 
-        # (optional) CPU you wish to allocate to the given task, defaults to the globally supplied CPU value.
-        # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_size
-        cpu: 256
+      # (optional) CPU you wish to allocate to the given task, defaults to the globally supplied CPU value.
+      # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_size
+      cpu: 256
 
-        # (optional) environment variables which are added to the given task, these are combined with
-        # the globally supplied environment variables
-        environment:
-          name: value
+      # (optional) environment variables which are added to the given task, these are combined with
+      # the globally supplied environment variables
+      environment:
+        name: value
 
-        # (optional) additional tags you wish to apply to the given task, these are combined with
-        # the provider and globally supplied tags.
-        tags:
-          name: value
+      # (optional) additional tags you wish to apply to the given task, these are combined with
+      # the provider and globally supplied tags.
+      tags:
+        name: value
 
-        # (optional) by default a task is deemed to be a service with a desired count of one,
-        # this results in a single long-running process which is a typical use-case of the plugin.
-        # however, if you wish to alter this you can include the following configuration options.
-        service:
-          # (optional) the desired amount of running tasks for the given service.
-          desiredCount: 1
+      # (optional) by default a task is deemed to be a service with a desired count of one,
+      # this results in a single long-running process which is a typical use-case of the plugin.
+      # however, if you wish to alter this you can include the following configuration options.
+      service:
+        # (optional) the desired amount of running tasks for the given service.
+        desiredCount: 1
 
-          # (optional) used during deployment to determine how many tasks can be provisioned for the transition phase.
-          maximumPercent: 200
+        # (optional) used during deployment to determine how many tasks can be provisioned for the transition phase.
+        maximumPercent: 200
 
-          # (optional) used during deployment to determine how many tasks are required to remain active for the transition phase.
-          minimumHealthyPercent: 100
+        # (optional) used during deployment to determine how many tasks are required to remain active for the transition phase.
+        minimumHealthyPercent: 100
 
-          # (optional) flag to determine if you wish to provision the task using Fargate Spot.
-          # note: at this time there is no fallback measures in-place to ensure that the task will be provisioned using
-          # on-demand Fargate if the spot instance can not be acquired.
-          spot: false
+        # (optional) flag to determine if you wish to provision the task using Fargate Spot.
+        # note: at this time there is no fallback measures in-place to ensure that the task will be provisioned using
+        # on-demand Fargate if the spot instance can not be acquired.
+        spot: false
 
-        # (optional) schedule expression used to configure the task to be executed at a desired time, as opposed to being a service.
-        # https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html
-        schedule: 'rate(1 minute)'
+      # (optional) schedule expression used to configure the task to be executed at a desired time, as opposed to being a service.
+      # https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html
+      schedule: 'rate(1 minute)'
 ```
 
 ---

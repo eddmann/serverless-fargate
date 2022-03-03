@@ -6,7 +6,12 @@ const compile = require('./compiler');
 
 class ServerlessFargateTasks {
   constructor(serverless) {
-    const config = get(serverless.service, 'custom.fargate', {});
+    serverless.configSchemaHandler.defineTopLevelProperty(
+      'fargate',
+      require('./schema')
+    );
+
+    const config = get(serverless, 'configurationInput.fargate', {});
 
     if (!config.tasks) {
       return;
