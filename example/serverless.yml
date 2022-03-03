@@ -1,4 +1,4 @@
-service: serverless-fargate-tasks
+service: serverless-fargate
 
 frameworkVersion: '2 || 3'
 
