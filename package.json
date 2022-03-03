@@ -1,6 +1,6 @@
 {
   "name": "serverless-fargate",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Maintain long-running Fargate tasks within your Serverless project",
   "main": "src/index.js",
   "peerDependencies": {
@@ -15,6 +15,9 @@
   "scripts": {
     "test": "jest"
   },
+  "files": [
+    "src/*.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eddmann/serverless-fargate.git"
