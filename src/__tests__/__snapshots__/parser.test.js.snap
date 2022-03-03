@@ -1,0 +1,204 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`full service task configuration 1`] = `
+Object {
+  "cpu": 512,
+  "environment": Object {
+    "global": "variable",
+  },
+  "executionRoleArn": "arn:aws:iam::123456:role/my-custom-execution-role",
+  "iamManagedPolicies": Array [
+    "arn:aws:iam::aws:policy/my-managed-policy",
+  ],
+  "iamRoleStatements": Array [
+    Object {
+      "Action": Array [
+        "resource:*",
+      ],
+      "Effect": "Allow",
+      "Resource": "*",
+    },
+  ],
+  "memory": "1GB",
+  "tags": Object {
+    "global": "tag",
+  },
+  "taskRoleArn": "arn:aws:iam::123456:role/my-custom-task-role",
+  "tasks": Array [
+    Object {
+      "command": Array [
+        "command",
+      ],
+      "cpu": 1024,
+      "entryPoint": Array [
+        "entrypoint",
+      ],
+      "environment": Object {
+        "global": "variable",
+        "task": "variable",
+      },
+      "executionRoleArn": "arn:aws:iam::123456:role/my-custom-execution-role-for-task-1",
+      "image": "my-image-1",
+      "memory": "2GB",
+      "name": "my-task-1",
+      "service": Object {
+        "desiredCount": 2,
+        "maximumPercent": 100,
+        "minimumHealthyPercent": 0,
+        "spot": true,
+      },
+      "tags": Object {
+        "global": "tag",
+        "task": "tag",
+      },
+      "taskRoleArn": "arn:aws:iam::123456:role/my-custom-task-role-for-task-1",
+      "vpc": Object {
+        "assignPublicIp": true,
+        "securityGroups": Array [
+          "sg-5678",
+        ],
+        "subnets": Array [
+          "subnet-5678",
+        ],
+      },
+    },
+    Object {
+      "command": Array [],
+      "cpu": 512,
+      "entryPoint": Array [],
+      "environment": Object {
+        "global": "variable",
+      },
+      "executionRoleArn": "arn:aws:iam::123456:role/my-custom-execution-role",
+      "image": "my-image-2",
+      "memory": "1GB",
+      "name": "task-2",
+      "service": Object {
+        "desiredCount": 1,
+        "maximumPercent": 200,
+        "minimumHealthyPercent": 100,
+        "spot": false,
+      },
+      "tags": Object {
+        "global": "tag",
+      },
+      "taskRoleArn": "arn:aws:iam::123456:role/my-custom-task-role",
+      "vpc": Object {
+        "assignPublicIp": false,
+        "securityGroups": Array [
+          "sg-1234",
+        ],
+        "subnets": Array [
+          "subnet-1234",
+        ],
+      },
+    },
+  ],
+  "vpc": Object {
+    "assignPublicIp": false,
+    "securityGroups": Array [
+      "sg-1234",
+    ],
+    "subnets": Array [
+      "subnet-1234",
+    ],
+  },
+}
+`;
+
+exports[`minimal scheduled task configuration 1`] = `
+Object {
+  "cpu": 256,
+  "environment": Object {},
+  "executionRoleArn": undefined,
+  "iamManagedPolicies": Array [],
+  "iamRoleStatements": Array [],
+  "memory": "0.5GB",
+  "tags": Object {},
+  "taskRoleArn": undefined,
+  "tasks": Array [
+    Object {
+      "command": Array [],
+      "cpu": 256,
+      "entryPoint": Array [],
+      "environment": Object {},
+      "executionRoleArn": undefined,
+      "image": "my-image",
+      "memory": "0.5GB",
+      "name": "my-task",
+      "schedule": "rate(1 minute)",
+      "tags": Object {},
+      "taskRoleArn": undefined,
+      "vpc": Object {
+        "assignPublicIp": false,
+        "securityGroups": Array [
+          "sg-1234",
+        ],
+        "subnets": Array [
+          "subnet-1234",
+        ],
+      },
+    },
+  ],
+  "vpc": Object {
+    "assignPublicIp": false,
+    "securityGroups": Array [
+      "sg-1234",
+    ],
+    "subnets": Array [
+      "subnet-1234",
+    ],
+  },
+}
+`;
+
+exports[`minimal service task configuration 1`] = `
+Object {
+  "cpu": 256,
+  "environment": Object {},
+  "executionRoleArn": undefined,
+  "iamManagedPolicies": Array [],
+  "iamRoleStatements": Array [],
+  "memory": "0.5GB",
+  "tags": Object {},
+  "taskRoleArn": undefined,
+  "tasks": Array [
+    Object {
+      "command": Array [],
+      "cpu": 256,
+      "entryPoint": Array [],
+      "environment": Object {},
+      "executionRoleArn": undefined,
+      "image": "my-image",
+      "memory": "0.5GB",
+      "name": "my-task",
+      "service": Object {
+        "desiredCount": 1,
+        "maximumPercent": 200,
+        "minimumHealthyPercent": 100,
+        "spot": false,
+      },
+      "tags": Object {},
+      "taskRoleArn": undefined,
+      "vpc": Object {
+        "assignPublicIp": false,
+        "securityGroups": Array [
+          "sg-1234",
+        ],
+        "subnets": Array [
+          "subnet-1234",
+        ],
+      },
+    },
+  ],
+  "vpc": Object {
+    "assignPublicIp": false,
+    "securityGroups": Array [
+      "sg-1234",
+    ],
+    "subnets": Array [
+      "subnet-1234",
+    ],
+  },
+}
+`;
