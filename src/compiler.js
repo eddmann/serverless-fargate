@@ -69,15 +69,18 @@ const compileIamRoles = config => ({
             },
           ],
         },
-        Policies: [
-          {
-            PolicyName: 'FargateTaskPolicy',
-            PolicyDocument: {
-              Version: '2012-10-17',
-              Statement: config.iamRoleStatements,
-            },
-          },
-        ],
+        Policies:
+          config.iamRoleStatements.length > 0
+            ? [
+                {
+                  PolicyName: 'FargateTaskPolicy',
+                  PolicyDocument: {
+                    Version: '2012-10-17',
+                    Statement: config.iamRoleStatements,
+                  },
+                },
+              ]
+            : [],
         ManagedPolicyArns: config.iamManagedPolicies,
         Tags: toTags(config.tags),
       },

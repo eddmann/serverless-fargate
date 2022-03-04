@@ -195,3 +195,29 @@ test('service and scheduled tasks', () => {
 
   expect(compiled).toMatchSnapshot();
 });
+
+test('definition without IAM statements/policies present', () => {
+  const compiled = compile(
+    {},
+    {
+      memory: '0.5GB',
+      cpu: 256,
+      environment: {},
+      iamRoleStatements: [],
+      iamManagedPolicies: [],
+      vpc: {
+        subnets: ['subnet-1234', 'subnet-5678'],
+        securityGroups: ['sg-1234'],
+        assignPublicIp: false,
+      },
+      tags: {},
+      tasks: [],
+    }
+  );
+
+  const role = compiled.Resources.FargateIamTaskRole.Properties;
+  expect(role.Policies).toEqual([]);
+  expect(role.ManagedPolicyArns).toEqual([]);
+
+  expect(compiled).toMatchSnapshot();
+});

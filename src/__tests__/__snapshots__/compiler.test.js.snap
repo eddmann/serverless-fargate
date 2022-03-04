@@ -1,5 +1,80 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`definition without IAM statements/policies present 1`] = `
+Object {
+  "Outputs": Object {},
+  "Resources": Object {
+    "FargateIamExecutionRole": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "sts:AssumeRole",
+              ],
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Array [
+                  "ecs-tasks.amazonaws.com",
+                  "events.amazonaws.com",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+          "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceEventsRole",
+        ],
+        "Tags": Array [],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "FargateIamTaskRole": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "sts:AssumeRole",
+              ],
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Array [
+                  "ecs-tasks.amazonaws.com",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [],
+        "Policies": Array [],
+        "Tags": Array [],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "FargateTasksCluster": Object {
+      "Properties": Object {
+        "CapacityProviders": Array [
+          "FARGATE",
+          "FARGATE_SPOT",
+        ],
+        "Tags": Array [],
+      },
+      "Type": "AWS::ECS::Cluster",
+    },
+    "FargateTasksLogGroup": Object {
+      "Properties": Object {
+        "Tags": Array [],
+      },
+      "Type": "AWS::Logs::LogGroup",
+    },
+  },
+}
+`;
+
 exports[`service and scheduled tasks 1`] = `
 Object {
   "Outputs": Object {

@@ -74,7 +74,7 @@ fargate:
   # (optional) additional managed policies you wish to add to the task role, you would place policies here instead of at
   # the provider level if you only wished them to target Fargate tasks.
   iamManagedPolicies:
-    - arn:aws:iam::123456:policy/my-managed-taks-policy
+    - arn:aws:iam::123456:policy/my-managed-task-policy
 
   vpc:
     # (optional) default security groups you wish to apply to each task.
