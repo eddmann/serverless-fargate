@@ -1,13 +1,13 @@
 # 🚀 Serverless Fargate
 
-Adds the ability to maintain long-running Fargate tasks within your Serverless project.
+Adds the ability to maintain long-running Fargate ECS tasks within your Serverless project.
 
 ## Overview
 
 Not all behaviour can be broken down and modelled within Lambda's execution duration constraints.
 Sometimes you need the ability to exceed this duration, but wish to remain in a Serverless environment.
 
-This plugin adds the ability to declare Fargate-backed tasks which are provisioned during a Serverless deployment.
+This plugin adds the ability to declare Fargate-backed ECS tasks which are provisioned during a Serverless deployment.
 Taking advantage of Serverless Frameworks ability to build/push images to ECR, you are able to declare both long-running and Lambda-based behaviour side-by-side.
 
 At a high-level the plugin provides the following functionality:
