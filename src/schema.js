@@ -29,7 +29,7 @@ module.exports = {
         '^[a-zA-Z0-9-]+$': {
           type: 'object',
           properties: {
-            name: { type: 'boolean' },
+            name: { type: 'string' },
             image: { type: 'string' },
             executionRoleArn: { type: 'string' },
             taskRoleArn: { type: 'string' },
