@@ -67,6 +67,7 @@ Object {
     },
     "FargateTasksLogGroup": Object {
       "Properties": Object {
+        "LogGroupName": undefined,
         "Tags": Array [],
       },
       "Type": "AWS::Logs::LogGroup",
@@ -199,6 +200,7 @@ Object {
     },
     "FargateTasksLogGroup": Object {
       "Properties": Object {
+        "LogGroupName": undefined,
         "Tags": Array [
           Object {
             "Key": "provider",
@@ -518,6 +520,7 @@ Object {
     },
     "FargateTasksLogGroup": Object {
       "Properties": Object {
+        "LogGroupName": undefined,
         "Tags": Array [
           Object {
             "Key": "provider",
@@ -738,6 +741,7 @@ Object {
     },
     "FargateTasksLogGroup": Object {
       "Properties": Object {
+        "LogGroupName": undefined,
         "Tags": Array [
           Object {
             "Key": "provider",

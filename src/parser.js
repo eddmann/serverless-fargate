@@ -69,6 +69,7 @@ module.exports = config => {
     taskRoleArn: config.taskRoleArn,
     iamRoleStatements: config.iamRoleStatements || [],
     iamManagedPolicies: config.iamManagedPolicies || [],
+    logGroupName: config.logGroupName,
     vpc: {
       subnets: get(config, 'vpc.subnets', []),
       securityGroups: get(config, 'vpc.securityGroups', []),
