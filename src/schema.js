@@ -7,6 +7,7 @@ module.exports = {
     environment: { type: 'object' },
     executionRoleArn: { type: 'string' },
     taskRoleArn: { type: 'string' },
+    logGroupName: { type: 'string' },
     iamRoleStatements: { type: 'array' },
     iamManagedPolicies: { type: 'array', items: { type: 'string' } },
     vpc: {

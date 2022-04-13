@@ -19,6 +19,7 @@ Object {
       "Resource": "*",
     },
   ],
+  "logGroupName": undefined,
   "memory": "1GB",
   "tags": Object {
     "global": "tag",
@@ -113,6 +114,7 @@ Object {
   "executionRoleArn": undefined,
   "iamManagedPolicies": Array [],
   "iamRoleStatements": Array [],
+  "logGroupName": undefined,
   "memory": "0.5GB",
   "tags": Object {},
   "taskRoleArn": undefined,
@@ -159,6 +161,7 @@ Object {
   "executionRoleArn": undefined,
   "iamManagedPolicies": Array [],
   "iamRoleStatements": Array [],
+  "logGroupName": undefined,
   "memory": "0.5GB",
   "tags": Object {},
   "taskRoleArn": undefined,

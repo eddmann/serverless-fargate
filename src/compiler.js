@@ -23,6 +23,7 @@ const compileCluster = config => ({
     FargateTasksLogGroup: {
       Type: 'AWS::Logs::LogGroup',
       Properties: {
+        LogGroupName: config.logGroupName,
         Tags: toTags(config.tags),
       },
     },
