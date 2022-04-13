@@ -27,6 +27,7 @@ class ServerlessFargate {
   async compileTasks() {
     const config = parse({
       ...this.config,
+      environment: this.getEnvironmentVariables(),
       tags: this.getResourceTags(),
       iamRoleStatements: this.getIamRoleStatements(),
       iamManagedPolicies: this.getIamManagedPolicies(),
@@ -101,6 +102,13 @@ class ServerlessFargate {
     return {
       ...(this.serverless.service.provider.tags || {}),
       ...(this.config.tags || {}),
+    };
+  }
+
+  getEnvironmentVariables() {
+    return {
+      ...(this.serverless.service.provider.environment || {}),
+      ...(this.config.environment || {}),
     };
   }
 }

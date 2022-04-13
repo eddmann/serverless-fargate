@@ -41,6 +41,10 @@ provider:
   iamManagedPolicies:
     - arn:aws:iam::123456:policy/my-managed-provider-policy
 
+  # (optional) environment variables present within the provider are added to all tasks.
+  environment:
+    name: value
+
   # (optional) tags present within the provider are added to task resources.
   tags:
     name: value
