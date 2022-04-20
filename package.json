@@ -1,6 +1,6 @@
 {
   "name": "serverless-fargate",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Maintain long-running Fargate ECS tasks within your Serverless project",
   "main": "src/index.js",
   "peerDependencies": {
