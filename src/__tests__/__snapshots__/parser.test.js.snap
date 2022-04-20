@@ -55,10 +55,10 @@ Object {
       "taskRoleArn": "arn:aws:iam::123456:role/my-custom-task-role-for-task-1",
       "vpc": Object {
         "assignPublicIp": true,
-        "securityGroups": Array [
+        "securityGroupIds": Array [
           "sg-5678",
         ],
-        "subnets": Array [
+        "subnetIds": Array [
           "subnet-5678",
         ],
       },
@@ -86,10 +86,10 @@ Object {
       "taskRoleArn": "arn:aws:iam::123456:role/my-custom-task-role",
       "vpc": Object {
         "assignPublicIp": false,
-        "securityGroups": Array [
+        "securityGroupIds": Array [
           "sg-1234",
         ],
-        "subnets": Array [
+        "subnetIds": Array [
           "subnet-1234",
         ],
       },
@@ -97,10 +97,10 @@ Object {
   ],
   "vpc": Object {
     "assignPublicIp": false,
-    "securityGroups": Array [
+    "securityGroupIds": Array [
       "sg-1234",
     ],
-    "subnets": Array [
+    "subnetIds": Array [
       "subnet-1234",
     ],
   },
@@ -133,10 +133,10 @@ Object {
       "taskRoleArn": undefined,
       "vpc": Object {
         "assignPublicIp": false,
-        "securityGroups": Array [
+        "securityGroupIds": Array [
           "sg-1234",
         ],
-        "subnets": Array [
+        "subnetIds": Array [
           "subnet-1234",
         ],
       },
@@ -144,10 +144,10 @@ Object {
   ],
   "vpc": Object {
     "assignPublicIp": false,
-    "securityGroups": Array [
+    "securityGroupIds": Array [
       "sg-1234",
     ],
-    "subnets": Array [
+    "subnetIds": Array [
       "subnet-1234",
     ],
   },
@@ -185,10 +185,10 @@ Object {
       "taskRoleArn": undefined,
       "vpc": Object {
         "assignPublicIp": false,
-        "securityGroups": Array [
+        "securityGroupIds": Array [
           "sg-1234",
         ],
-        "subnets": Array [
+        "subnetIds": Array [
           "subnet-1234",
         ],
       },
@@ -196,10 +196,10 @@ Object {
   ],
   "vpc": Object {
     "assignPublicIp": false,
-    "securityGroups": Array [
+    "securityGroupIds": Array [
       "sg-1234",
     ],
-    "subnets": Array [
+    "subnetIds": Array [
       "subnet-1234",
     ],
   },

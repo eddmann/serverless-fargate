@@ -28,6 +28,7 @@ class ServerlessFargate {
     const config = parse({
       ...this.config,
       environment: this.getEnvironmentVariables(),
+      vpc: this.getVpcConfiguration(),
       tags: this.getResourceTags(),
       iamRoleStatements: this.getIamRoleStatements(),
       iamManagedPolicies: this.getIamManagedPolicies(),
@@ -109,6 +110,13 @@ class ServerlessFargate {
     return {
       ...(this.serverless.service.provider.environment || {}),
       ...(this.config.environment || {}),
+    };
+  }
+
+  getVpcConfiguration() {
+    return {
+      ...(this.serverless.service.provider.vpc || {}),
+      ...(this.config.vpc || {}),
     };
   }
 }

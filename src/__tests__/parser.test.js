@@ -3,8 +3,8 @@ const parse = require('../parser');
 test('minimal service task configuration', () => {
   const parsed = parse({
     vpc: {
-      securityGroups: ['sg-1234'],
-      subnets: ['subnet-1234'],
+      securityGroupIds: ['sg-1234'],
+      subnetIds: ['subnet-1234'],
     },
     tasks: {
       'my-task': {
@@ -19,8 +19,8 @@ test('minimal service task configuration', () => {
 test('minimal scheduled task configuration', () => {
   const parsed = parse({
     vpc: {
-      securityGroups: ['sg-1234'],
-      subnets: ['subnet-1234'],
+      securityGroupIds: ['sg-1234'],
+      subnetIds: ['subnet-1234'],
     },
     tasks: {
       'my-task': {
@@ -51,8 +51,8 @@ test('full service task configuration', () => {
     ],
     iamManagedPolicies: ['arn:aws:iam::aws:policy/my-managed-policy'],
     vpc: {
-      securityGroups: ['sg-1234'],
-      subnets: ['subnet-1234'],
+      securityGroupIds: ['sg-1234'],
+      subnetIds: ['subnet-1234'],
       assignPublicIp: false,
     },
     tags: {
@@ -66,8 +66,8 @@ test('full service task configuration', () => {
           'arn:aws:iam::123456:role/my-custom-execution-role-for-task-1',
         taskRoleArn: 'arn:aws:iam::123456:role/my-custom-task-role-for-task-1',
         vpc: {
-          securityGroups: ['sg-5678'],
-          subnets: ['subnet-5678'],
+          securityGroupIds: ['sg-5678'],
+          subnetIds: ['subnet-5678'],
           assignPublicIp: true,
         },
         command: ['command'],

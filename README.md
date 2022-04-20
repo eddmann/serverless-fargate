@@ -45,6 +45,16 @@ provider:
   environment:
     name: value
 
+  vpc:
+    # (optional) default security groups which are added to tasks that do not contain any overrides.
+    securityGroupIds:
+      - sg-12345
+
+    # (required) default subnets which are added to tasks that do not contain any overrides.
+    # all tasks MUST be assigned subnets as Fargate operates within `awsvpc` mode.
+    subnetIds:
+      - subnet-1234
+
   # (optional) tags present within the provider are added to task resources.
   tags:
     name: value
@@ -84,13 +94,13 @@ fargate:
     - arn:aws:iam::123456:policy/my-managed-task-policy
 
   vpc:
-    # (optional) default security groups you wish to apply to each task.
-    securityGroups:
+    # (optional) default security groups which are added to tasks that do not contain any overrides; these override any provider-level configuration.
+    securityGroupIds:
       - sg-12345
 
-    # (required) default subnets you wish to allocate the tasks within, either subnets are defined here or within each task.
+    # (required) default subnets which are added to tasks that do not contain any overrides; these override any provider-level configuration.
     # all tasks MUST be assigned subnets as Fargate operates within `awsvpc` mode.
-    subnets:
+    subnetIds:
       - subnet-1234
 
     # (optional) default flag to assign a public IP to each task, this requires the supplied subnets to be public (internet) facing.
@@ -115,13 +125,13 @@ fargate:
       taskRoleArn: arn:aws:iam::123456:role/my-custom-task-role
 
       vpc:
-        # (optional) security groups you wish to apply to the given tasks, this overrides any default security groups supplied.
-        securityGroups:
+        # (optional) security groups you wish to apply to the given tasks; these override any provider/fargate-level configuration.
+        securityGroupIds:
           - sg-12345
 
-        # (required) subnets you wish to allocate the given task within, either subnets are defined here or at the global `vpc` level.
+        # (required) subnets you wish to apply to the given tasks; these override any provider/fargate-level configuration.
         # all tasks MUST be assigned subnets as Fargate operates within `awsvpc` mode.
-        subnets:
+        subnetIds:
           - subnet-1234
 
         # (optional) flag to assign a public IP to the given task, this requires the supplied subnets to be public (internet) facing.
