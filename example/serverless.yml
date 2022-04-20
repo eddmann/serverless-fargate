@@ -49,5 +49,3 @@ fargate:
         - /app/service.php
         - my-scheduled-task
         - 1
-
-functions:
