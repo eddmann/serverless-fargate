@@ -1,4 +1,4 @@
-securityGroups:
+securityGroupIds:
   - sg-1234
-subnets:
+subnetIds:
   - subnet-1234

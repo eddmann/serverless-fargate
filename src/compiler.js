@@ -149,8 +149,8 @@ const compileScheduledTask = (identifier, task) => ({
           NetworkConfiguration: {
             AwsVpcConfiguration: {
               AssignPublicIp: task.vpc.assignPublicIp ? 'ENABLED' : 'DISABLED',
-              SecurityGroups: task.vpc.securityGroups,
-              Subnets: task.vpc.subnets,
+              SecurityGroups: task.vpc.securityGroupIds,
+              Subnets: task.vpc.subnetIds,
             },
           },
         },
@@ -179,8 +179,8 @@ const compileService = (identifier, task) => ({
     NetworkConfiguration: {
       AwsvpcConfiguration: {
         AssignPublicIp: task.vpc.assignPublicIp ? 'ENABLED' : 'DISABLED',
-        SecurityGroups: task.vpc.securityGroups,
-        Subnets: task.vpc.subnets,
+        SecurityGroups: task.vpc.securityGroupIds,
+        Subnets: task.vpc.subnetIds,
       },
     },
     PropagateTags: 'TASK_DEFINITION',

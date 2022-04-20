@@ -9,11 +9,11 @@ const parseTask = (global, name, task) => {
     executionRoleArn: task.executionRoleArn || global.executionRoleArn,
     taskRoleArn: task.taskRoleArn || global.taskRoleArn,
     vpc: {
-      subnets: get(task, 'vpc.subnets', global.vpc.subnets),
-      securityGroups: get(
+      subnetIds: get(task, 'vpc.subnetIds', global.vpc.subnetIds),
+      securityGroupIds: get(
         task,
-        'vpc.securityGroups',
-        global.vpc.securityGroups
+        'vpc.securityGroupIds',
+        global.vpc.securityGroupIds
       ),
       assignPublicIp: get(
         task,
@@ -71,8 +71,8 @@ module.exports = config => {
     iamManagedPolicies: config.iamManagedPolicies || [],
     logGroupName: config.logGroupName,
     vpc: {
-      subnets: get(config, 'vpc.subnets', []),
-      securityGroups: get(config, 'vpc.securityGroups', []),
+      subnetIds: get(config, 'vpc.subnetIds', []),
+      securityGroupIds: get(config, 'vpc.securityGroupIds', []),
       assignPublicIp: get(config, 'vpc.assignPublicIp', false),
     },
     tags: config.tags || {},

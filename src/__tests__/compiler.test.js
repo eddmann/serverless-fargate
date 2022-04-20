@@ -20,8 +20,8 @@ test('single service task', () => {
       ],
       iamManagedPolicies: ['arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess'],
       vpc: {
-        subnets: ['subnet-1234', 'subnet-5678'],
-        securityGroups: ['sg-1234'],
+        subnetIds: ['subnet-1234', 'subnet-5678'],
+        securityGroupIds: ['sg-1234'],
         assignPublicIp: false,
       },
       tags: {
@@ -32,8 +32,8 @@ test('single service task', () => {
           name: 'my-task',
           image: 'my-image',
           vpc: {
-            subnets: ['subnet-1234', 'subnet-5678'],
-            securityGroups: ['sg-1234'],
+            subnetIds: ['subnet-1234', 'subnet-5678'],
+            securityGroupIds: ['sg-1234'],
             assignPublicIp: false,
           },
           command: ['command'],
@@ -80,8 +80,8 @@ test('single scheduled task', () => {
       ],
       iamManagedPolicies: ['arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess'],
       vpc: {
-        subnets: ['subnet-1234', 'subnet-5678'],
-        securityGroups: ['sg-1234'],
+        subnetIds: ['subnet-1234', 'subnet-5678'],
+        securityGroupIds: ['sg-1234'],
         assignPublicIp: false,
       },
       tags: {
@@ -92,8 +92,8 @@ test('single scheduled task', () => {
           name: 'my-task',
           image: 'my-image',
           vpc: {
-            subnets: ['subnet-1234', 'subnet-5678'],
-            securityGroups: ['sg-1234'],
+            subnetIds: ['subnet-1234', 'subnet-5678'],
+            securityGroupIds: ['sg-1234'],
             assignPublicIp: false,
           },
           command: ['command'],
@@ -136,8 +136,8 @@ test('service and scheduled tasks', () => {
       ],
       iamManagedPolicies: ['arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess'],
       vpc: {
-        subnets: ['subnet-1234', 'subnet-5678'],
-        securityGroups: ['sg-1234'],
+        subnetIds: ['subnet-1234', 'subnet-5678'],
+        securityGroupIds: ['sg-1234'],
         assignPublicIp: false,
       },
       tags: {
@@ -148,8 +148,8 @@ test('service and scheduled tasks', () => {
           name: 'my-task-1',
           image: 'my-image-1',
           vpc: {
-            subnets: ['subnet-1234', 'subnet-5678'],
-            securityGroups: ['sg-1234'],
+            subnetIds: ['subnet-1234', 'subnet-5678'],
+            securityGroupIds: ['sg-1234'],
             assignPublicIp: false,
           },
           command: ['command'],
@@ -173,8 +173,8 @@ test('service and scheduled tasks', () => {
           name: 'my-task-2',
           image: 'my-image-2',
           vpc: {
-            subnets: ['subnet-1234', 'subnet-5678'],
-            securityGroups: ['sg-1234'],
+            subnetIds: ['subnet-1234', 'subnet-5678'],
+            securityGroupIds: ['sg-1234'],
             assignPublicIp: false,
           },
           command: ['command'],
@@ -206,8 +206,8 @@ test('definition without IAM statements/policies present', () => {
       iamRoleStatements: [],
       iamManagedPolicies: [],
       vpc: {
-        subnets: ['subnet-1234', 'subnet-5678'],
-        securityGroups: ['sg-1234'],
+        subnetIds: ['subnet-1234', 'subnet-5678'],
+        securityGroupIds: ['sg-1234'],
         assignPublicIp: false,
       },
       tags: {},

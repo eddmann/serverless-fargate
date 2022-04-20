@@ -13,8 +13,8 @@ module.exports = {
     vpc: {
       type: 'object',
       properties: {
-        securityGroups: { type: 'array', items: { type: 'string' } },
-        subnets: { type: 'array', items: { type: 'string' } },
+        securityGroupIds: { type: 'array', items: { type: 'string' } },
+        subnetIds: { type: 'array', items: { type: 'string' } },
         assignPublicIp: { type: 'boolean' },
       },
     },
@@ -37,11 +37,11 @@ module.exports = {
             vpc: {
               type: 'object',
               properties: {
-                securityGroups: {
+                securityGroupIds: {
                   type: 'array',
                   items: { type: 'string' },
                 },
-                subnets: { type: 'array', items: { type: 'string' } },
+                subnetIds: { type: 'array', items: { type: 'string' } },
                 assignPublicIp: { type: 'boolean' },
               },
             },
