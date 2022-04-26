@@ -630,6 +630,220 @@ Object {
 }
 `;
 
+exports[`single scheduled task using ec2 provider 1`] = `
+Object {
+  "Outputs": Object {
+    "MytaskScheduledTaskArn": Object {
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "MytaskScheduledTask",
+          "Arn",
+        ],
+      },
+    },
+    "MytaskTaskArn": Object {
+      "Value": Object {
+        "Ref": "MytaskTask",
+      },
+    },
+  },
+  "Resources": Object {
+    "FargateIamExecutionRole": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "sts:AssumeRole",
+              ],
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Array [
+                  "ecs-tasks.amazonaws.com",
+                  "events.amazonaws.com",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+          "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceEventsRole",
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "provider",
+            "Value": "tag",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "FargateIamTaskRole": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "sts:AssumeRole",
+              ],
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Array [
+                  "ecs-tasks.amazonaws.com",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess",
+        ],
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": Array [
+                    "sqs:*",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": "*",
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "FargateTaskPolicy",
+          },
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "provider",
+            "Value": "tag",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "FargateTasksCluster": Object {
+      "Properties": Object {
+        "CapacityProviders": Array [
+          "FARGATE",
+          "FARGATE_SPOT",
+          "my-asg-capacity-provider",
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "provider",
+            "Value": "tag",
+          },
+        ],
+      },
+      "Type": "AWS::ECS::Cluster",
+    },
+    "FargateTasksLogGroup": Object {
+      "Properties": Object {
+        "LogGroupName": undefined,
+        "Tags": Array [
+          Object {
+            "Key": "provider",
+            "Value": "tag",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+    },
+    "MytaskScheduledTask": Object {
+      "Properties": Object {
+        "ScheduleExpression": "rate(1 minute)",
+        "Targets": Array [
+          Object {
+            "Arn": Object {
+              "Fn::GetAtt": Array [
+                "FargateTasksCluster",
+                "Arn",
+              ],
+            },
+            "EcsParameters": Object {
+              "LaunchType": "EC2",
+              "NetworkConfiguration": undefined,
+              "TaskCount": 1,
+              "TaskDefinitionArn": Object {
+                "Fn::Sub": "\${MytaskTask}",
+              },
+            },
+            "Id": "Mytask",
+            "RoleArn": Object {
+              "Fn::GetAtt": Array [
+                "FargateIamExecutionRole",
+                "Arn",
+              ],
+            },
+          },
+        ],
+      },
+      "Type": "AWS::Events::Rule",
+    },
+    "MytaskTask": Object {
+      "Properties": Object {
+        "ContainerDefinitions": Array [
+          Object {
+            "Command": Array [
+              "command",
+            ],
+            "EntryPoint": Array [
+              "entrypoint",
+            ],
+            "Environment": Array [
+              Object {
+                "Name": "task",
+                "Value": "variable",
+              },
+            ],
+            "Image": undefined,
+            "LogConfiguration": Object {
+              "LogDriver": "awslogs",
+              "Options": Object {
+                "awslogs-group": Object {
+                  "Fn::Sub": "\${FargateTasksLogGroup}",
+                },
+                "awslogs-region": Object {
+                  "Fn::Sub": "\${AWS::Region}",
+                },
+                "awslogs-stream-prefix": "fargate",
+              },
+            },
+            "Name": "my-task",
+          },
+        ],
+        "Cpu": 256,
+        "ExecutionRoleArn": Object {
+          "Fn::Sub": "\${FargateIamExecutionRole}",
+        },
+        "Family": "my-task",
+        "Memory": "0.5GB",
+        "NetworkMode": "bridge",
+        "RequiresCompatibilities": Array [
+          "EC2",
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "task",
+            "Value": "tag",
+          },
+        ],
+        "TaskRoleArn": Object {
+          "Fn::Sub": "\${FargateIamTaskRole}",
+        },
+      },
+      "Type": "AWS::ECS::TaskDefinition",
+    },
+  },
+}
+`;
+
 exports[`single service task 1`] = `
 Object {
   "Outputs": Object {
@@ -834,6 +1048,217 @@ Object {
         "NetworkMode": "awsvpc",
         "RequiresCompatibilities": Array [
           "FARGATE",
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "task",
+            "Value": "tag",
+          },
+        ],
+        "TaskRoleArn": Object {
+          "Fn::Sub": "\${FargateIamTaskRole}",
+        },
+      },
+      "Type": "AWS::ECS::TaskDefinition",
+    },
+  },
+}
+`;
+
+exports[`single service task using ec2 provider 1`] = `
+Object {
+  "Outputs": Object {
+    "MytaskServiceArn": Object {
+      "Value": Object {
+        "Ref": "MytaskService",
+      },
+    },
+    "MytaskTaskArn": Object {
+      "Value": Object {
+        "Ref": "MytaskTask",
+      },
+    },
+  },
+  "Resources": Object {
+    "FargateIamExecutionRole": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "sts:AssumeRole",
+              ],
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Array [
+                  "ecs-tasks.amazonaws.com",
+                  "events.amazonaws.com",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+          "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceEventsRole",
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "provider",
+            "Value": "tag",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "FargateIamTaskRole": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "sts:AssumeRole",
+              ],
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Array [
+                  "ecs-tasks.amazonaws.com",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess",
+        ],
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": Array [
+                    "sqs:*",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": "*",
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "FargateTaskPolicy",
+          },
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "provider",
+            "Value": "tag",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "FargateTasksCluster": Object {
+      "Properties": Object {
+        "CapacityProviders": Array [
+          "FARGATE",
+          "FARGATE_SPOT",
+          "my-asg-capacity-provider",
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "provider",
+            "Value": "tag",
+          },
+        ],
+      },
+      "Type": "AWS::ECS::Cluster",
+    },
+    "FargateTasksLogGroup": Object {
+      "Properties": Object {
+        "LogGroupName": undefined,
+        "Tags": Array [
+          Object {
+            "Key": "provider",
+            "Value": "tag",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+    },
+    "MytaskService": Object {
+      "Properties": Object {
+        "CapacityProviderStrategy": Array [
+          Object {
+            "CapacityProvider": "my-asg-capacity-provider",
+            "Weight": 1,
+          },
+        ],
+        "Cluster": Object {
+          "Fn::Sub": "\${FargateTasksCluster}",
+        },
+        "DeploymentConfiguration": Object {
+          "MaximumPercent": 200,
+          "MinimumHealthyPercent": 100,
+        },
+        "DesiredCount": 1,
+        "NetworkConfiguration": undefined,
+        "PropagateTags": "TASK_DEFINITION",
+        "ServiceName": "my-task",
+        "Tags": Array [
+          Object {
+            "Key": "task",
+            "Value": "tag",
+          },
+        ],
+        "TaskDefinition": Object {
+          "Fn::Sub": "\${MytaskTask}",
+        },
+      },
+      "Type": "AWS::ECS::Service",
+    },
+    "MytaskTask": Object {
+      "Properties": Object {
+        "ContainerDefinitions": Array [
+          Object {
+            "Command": Array [
+              "command",
+            ],
+            "EntryPoint": Array [
+              "entrypoint",
+            ],
+            "Environment": Array [
+              Object {
+                "Name": "task",
+                "Value": "variable",
+              },
+            ],
+            "Image": undefined,
+            "LogConfiguration": Object {
+              "LogDriver": "awslogs",
+              "Options": Object {
+                "awslogs-group": Object {
+                  "Fn::Sub": "\${FargateTasksLogGroup}",
+                },
+                "awslogs-region": Object {
+                  "Fn::Sub": "\${AWS::Region}",
+                },
+                "awslogs-stream-prefix": "fargate",
+              },
+            },
+            "Name": "my-task",
+          },
+        ],
+        "Cpu": 256,
+        "ExecutionRoleArn": Object {
+          "Fn::Sub": "\${FargateIamExecutionRole}",
+        },
+        "Family": "my-task",
+        "Memory": "0.5GB",
+        "NetworkMode": "bridge",
+        "RequiresCompatibilities": Array [
+          "EC2",
         ],
         "Tags": Array [
           Object {

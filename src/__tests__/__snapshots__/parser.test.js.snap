@@ -2,6 +2,7 @@
 
 exports[`full service task configuration 1`] = `
 Object {
+  "autoScalingGroupCapacityProviderName": undefined,
   "cpu": 512,
   "environment": Object {
     "global": "variable",
@@ -27,6 +28,7 @@ Object {
   "taskRoleArn": "arn:aws:iam::123456:role/my-custom-task-role",
   "tasks": Array [
     Object {
+      "autoScalingGroupCapacityProviderName": undefined,
       "command": Array [
         "command",
       ],
@@ -64,6 +66,7 @@ Object {
       },
     },
     Object {
+      "autoScalingGroupCapacityProviderName": undefined,
       "command": Array [],
       "cpu": 512,
       "entryPoint": Array [],
@@ -109,6 +112,7 @@ Object {
 
 exports[`minimal scheduled task configuration 1`] = `
 Object {
+  "autoScalingGroupCapacityProviderName": undefined,
   "cpu": 256,
   "environment": Object {},
   "executionRoleArn": undefined,
@@ -120,6 +124,7 @@ Object {
   "taskRoleArn": undefined,
   "tasks": Array [
     Object {
+      "autoScalingGroupCapacityProviderName": undefined,
       "command": Array [],
       "cpu": 256,
       "entryPoint": Array [],
@@ -156,6 +161,7 @@ Object {
 
 exports[`minimal service task configuration 1`] = `
 Object {
+  "autoScalingGroupCapacityProviderName": undefined,
   "cpu": 256,
   "environment": Object {},
   "executionRoleArn": undefined,
@@ -167,6 +173,7 @@ Object {
   "taskRoleArn": undefined,
   "tasks": Array [
     Object {
+      "autoScalingGroupCapacityProviderName": undefined,
       "command": Array [],
       "cpu": 256,
       "entryPoint": Array [],

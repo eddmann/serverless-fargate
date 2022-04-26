@@ -5,6 +5,8 @@ const { get } = require('./util');
 const parseTask = (global, name, task) => {
   const definition = {
     name: task.name || name,
+    autoScalingGroupCapacityProviderName:
+      global.autoScalingGroupCapacityProviderName,
     image: task.image,
     executionRoleArn: task.executionRoleArn || global.executionRoleArn,
     taskRoleArn: task.taskRoleArn || global.taskRoleArn,
@@ -62,6 +64,8 @@ const parseTask = (global, name, task) => {
 
 module.exports = config => {
   const global = {
+    autoScalingGroupCapacityProviderName:
+      config.autoScalingGroupCapacityProviderName,
     memory: config.memory || '0.5GB',
     cpu: config.cpu || 256,
     environment: config.environment || {},

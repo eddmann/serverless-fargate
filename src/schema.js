@@ -2,6 +2,7 @@ module.exports = {
   type: 'object',
   additionalProperties: false,
   properties: {
+    autoScalingGroupCapacityProviderName: { type: 'string' },
     memory: { type: 'string' },
     cpu: { type: 'integer', enum: [256, 512, 1024, 2048, 4096] },
     environment: { type: 'object' },

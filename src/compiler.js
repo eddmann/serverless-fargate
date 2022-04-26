@@ -16,7 +16,11 @@ const compileCluster = config => ({
     FargateTasksCluster: {
       Type: 'AWS::ECS::Cluster',
       Properties: {
-        CapacityProviders: ['FARGATE', 'FARGATE_SPOT'],
+        CapacityProviders: [
+          'FARGATE',
+          'FARGATE_SPOT',
+          config.autoScalingGroupCapacityProviderName,
+        ].filter(Boolean),
         Tags: toTags(config.tags),
       },
     },
@@ -113,14 +117,18 @@ const compileTaskDefinition = (images, task) => ({
       },
     ],
     Family: task.name,
-    NetworkMode: 'awsvpc',
+    NetworkMode: task.autoScalingGroupCapacityProviderName
+      ? 'bridge'
+      : 'awsvpc',
     ExecutionRoleArn: task.executionRoleArn || {
       'Fn::Sub': '${FargateIamExecutionRole}',
     },
     TaskRoleArn: task.taskRoleArn || {
       'Fn::Sub': '${FargateIamTaskRole}',
     },
-    RequiresCompatibilities: ['FARGATE'],
+    RequiresCompatibilities: [
+      task.autoScalingGroupCapacityProviderName ? 'EC2' : 'FARGATE',
+    ],
     Memory: task.memory,
     Cpu: task.cpu,
     Tags: toTags(task.tags),
@@ -145,14 +153,20 @@ const compileScheduledTask = (identifier, task) => ({
             'Fn::Sub': '${' + identifier + 'Task}',
           },
           TaskCount: 1,
-          LaunchType: 'FARGATE',
-          NetworkConfiguration: {
-            AwsVpcConfiguration: {
-              AssignPublicIp: task.vpc.assignPublicIp ? 'ENABLED' : 'DISABLED',
-              SecurityGroups: task.vpc.securityGroupIds,
-              Subnets: task.vpc.subnetIds,
-            },
-          },
+          LaunchType: task.autoScalingGroupCapacityProviderName
+            ? 'EC2'
+            : 'FARGATE',
+          NetworkConfiguration: task.autoScalingGroupCapacityProviderName
+            ? undefined
+            : {
+                AwsVpcConfiguration: {
+                  AssignPublicIp: task.vpc.assignPublicIp
+                    ? 'ENABLED'
+                    : 'DISABLED',
+                  SecurityGroups: task.vpc.securityGroupIds,
+                  Subnets: task.vpc.subnetIds,
+                },
+              },
         },
       },
     ],
@@ -166,7 +180,11 @@ const compileService = (identifier, task) => ({
     ServiceName: task.name,
     CapacityProviderStrategy: [
       {
-        CapacityProvider: task.service.spot ? 'FARGATE_SPOT' : 'FARGATE',
+        CapacityProvider: task.autoScalingGroupCapacityProviderName
+          ? task.autoScalingGroupCapacityProviderName
+          : task.service.spot
+          ? 'FARGATE_SPOT'
+          : 'FARGATE',
         Weight: 1,
       },
     ],
@@ -176,13 +194,15 @@ const compileService = (identifier, task) => ({
       MinimumHealthyPercent: task.service.minimumHealthyPercent,
     },
     TaskDefinition: { 'Fn::Sub': '${' + identifier + 'Task}' },
-    NetworkConfiguration: {
-      AwsvpcConfiguration: {
-        AssignPublicIp: task.vpc.assignPublicIp ? 'ENABLED' : 'DISABLED',
-        SecurityGroups: task.vpc.securityGroupIds,
-        Subnets: task.vpc.subnetIds,
-      },
-    },
+    NetworkConfiguration: task.autoScalingGroupCapacityProviderName
+      ? undefined
+      : {
+          AwsvpcConfiguration: {
+            AssignPublicIp: task.vpc.assignPublicIp ? 'ENABLED' : 'DISABLED',
+            SecurityGroups: task.vpc.securityGroupIds,
+            Subnets: task.vpc.subnetIds,
+          },
+        },
     PropagateTags: 'TASK_DEFINITION',
     Tags: toTags(task.tags),
   },
