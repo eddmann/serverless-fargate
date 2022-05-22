@@ -61,6 +61,7 @@ Object {
           "FARGATE",
           "FARGATE_SPOT",
         ],
+        "ClusterName": undefined,
         "Tags": Array [],
       },
       "Type": "AWS::ECS::Cluster",
@@ -189,6 +190,7 @@ Object {
           "FARGATE",
           "FARGATE_SPOT",
         ],
+        "ClusterName": undefined,
         "Tags": Array [
           Object {
             "Key": "provider",
@@ -509,6 +511,7 @@ Object {
           "FARGATE",
           "FARGATE_SPOT",
         ],
+        "ClusterName": undefined,
         "Tags": Array [
           Object {
             "Key": "provider",
@@ -730,6 +733,7 @@ Object {
           "FARGATE",
           "FARGATE_SPOT",
         ],
+        "ClusterName": undefined,
         "Tags": Array [
           Object {
             "Key": "provider",
