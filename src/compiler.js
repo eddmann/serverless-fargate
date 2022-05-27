@@ -16,6 +16,7 @@ const compileCluster = config => ({
     FargateTasksCluster: {
       Type: 'AWS::ECS::Cluster',
       Properties: {
+        ClusterName: config.clusterName,
         CapacityProviders: ['FARGATE', 'FARGATE_SPOT'],
         Tags: toTags(config.tags),
       },

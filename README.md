@@ -60,6 +60,9 @@ provider:
     name: value
 
 fargate:
+  # (optional) name used for the provisoned cluster - defaults to 'MyFargateCluster'
+  clusterName: my-cluster
+
   # (optional) default memory you wish to allocate to each task (if not supplied at the task level) - defaults to 0.5GB.
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_size
   memory: '0.5GB'
