@@ -63,6 +63,7 @@ const parseTask = (global, name, task) => {
 module.exports = config => {
   const global = {
     clusterName: config.clusterName,
+    containerInsights: config.containerInsights,
     memory: config.memory || '0.5GB',
     cpu: config.cpu || 256,
     environment: config.environment || {},

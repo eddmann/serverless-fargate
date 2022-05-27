@@ -17,6 +17,15 @@ const compileCluster = config => ({
       Type: 'AWS::ECS::Cluster',
       Properties: {
         ClusterName: config.clusterName,
+        ClusterSettings:
+          config.containerInsights !== undefined
+            ? [
+                {
+                  Name: 'containerInsights',
+                  Value: config.containerInsights ? 'enabled' : 'disabled',
+                },
+              ]
+            : undefined,
         CapacityProviders: ['FARGATE', 'FARGATE_SPOT'],
         Tags: toTags(config.tags),
       },

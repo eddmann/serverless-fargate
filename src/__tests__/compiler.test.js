@@ -7,6 +7,7 @@ test('single service task', () => {
     },
     {
       clusterName: undefined,
+      containerInsights: undefined,
       memory: '0.5GB',
       cpu: 256,
       environment: {
@@ -68,6 +69,7 @@ test('single scheduled task', () => {
     },
     {
       clusterName: undefined,
+      containerInsights: undefined,
       memory: '0.5GB',
       cpu: 256,
       environment: {
@@ -125,6 +127,7 @@ test('service and scheduled tasks', () => {
     },
     {
       clusterName: 'my-cluster-name',
+      containerInsights: false,
       memory: '0.5GB',
       cpu: 256,
       environment: {
@@ -203,6 +206,8 @@ test('definition without IAM statements/policies present', () => {
   const compiled = compile(
     {},
     {
+      clusterName: undefined,
+      containerInsights: undefined,
       memory: '0.5GB',
       cpu: 256,
       environment: {},

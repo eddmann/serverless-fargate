@@ -3,6 +3,7 @@
 exports[`full service task configuration 1`] = `
 Object {
   "clusterName": "my-cluster-name",
+  "containerInsights": true,
   "cpu": 512,
   "environment": Object {
     "global": "variable",
@@ -111,6 +112,7 @@ Object {
 exports[`minimal scheduled task configuration 1`] = `
 Object {
   "clusterName": undefined,
+  "containerInsights": undefined,
   "cpu": 256,
   "environment": Object {},
   "executionRoleArn": undefined,
@@ -159,6 +161,7 @@ Object {
 exports[`minimal service task configuration 1`] = `
 Object {
   "clusterName": undefined,
+  "containerInsights": undefined,
   "cpu": 256,
   "environment": Object {},
   "executionRoleArn": undefined,
