@@ -35,6 +35,7 @@ test('minimal scheduled task configuration', () => {
 
 test('full service task configuration', () => {
   const parsed = parse({
+    clusterName: 'my-cluster-name',
     memory: '1GB',
     cpu: 512,
     environment: {

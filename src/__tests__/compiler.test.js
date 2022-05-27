@@ -6,6 +6,7 @@ test('single service task', () => {
       'my-image': 'image-uri',
     },
     {
+      clusterName: undefined,
       memory: '0.5GB',
       cpu: 256,
       environment: {
@@ -66,6 +67,7 @@ test('single scheduled task', () => {
       'my-image': 'image-uri',
     },
     {
+      clusterName: undefined,
       memory: '0.5GB',
       cpu: 256,
       environment: {
@@ -122,6 +124,7 @@ test('service and scheduled tasks', () => {
       'my-image-2': 'image-uri-2',
     },
     {
+      clusterName: 'my-cluster-name',
       memory: '0.5GB',
       cpu: 256,
       environment: {

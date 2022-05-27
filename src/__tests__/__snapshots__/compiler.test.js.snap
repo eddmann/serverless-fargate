@@ -190,7 +190,7 @@ Object {
           "FARGATE",
           "FARGATE_SPOT",
         ],
-        "ClusterName": undefined,
+        "ClusterName": "my-cluster-name",
         "Tags": Array [
           Object {
             "Key": "provider",

@@ -60,8 +60,8 @@ provider:
     name: value
 
 fargate:
-  # (optional) name used for the provisoned cluster - defaults to 'MyFargateCluster'
-  clusterName: my-cluster
+  # (optional) name used for the provisoned cluster; an auto-generated name by CloudFormation is used if not supplied.
+  clusterName: my-cluster-name
 
   # (optional) default memory you wish to allocate to each task (if not supplied at the task level) - defaults to 0.5GB.
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_size
@@ -75,7 +75,7 @@ fargate:
   environment:
     name: value
 
-  # (optional) name used for the provisoned log group
+  # (optional) name used for the provisoned log group.
   logGroupName: my-cluster-log-group
 
   # (optional) default execution role ARN you wish to use for the task.
@@ -157,7 +157,7 @@ fargate:
       cpu: 256
 
       # (optional) environment variables which are added to the given task, these are combined with
-      # the globally supplied environment variables
+      # the globally supplied environment variables.
       environment:
         name: value
 
