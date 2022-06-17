@@ -134,6 +134,12 @@ const compileTaskDefinition = (images, task) => ({
     Memory: task.memory,
     Cpu: task.cpu,
     Tags: toTags(task.tags),
+    RuntimePlatform:
+      task.architecture !== undefined
+        ? {
+          CpuArchitecture: task.architecture
+        }
+        : undefined,
   },
 });
 
