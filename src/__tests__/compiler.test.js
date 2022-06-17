@@ -72,6 +72,69 @@ test('single service task', () => {
   expect(compiled).toMatchSnapshot();
 });
 
+test('single service task(ARM64)', () => {
+  const compiled = compile(
+    {
+      'my-image': 'image-uri',
+    },
+    {
+      clusterName: undefined,
+      containerInsights: undefined,
+      memory: '0.5GB',
+      cpu: 256,
+      environment: {
+        provider: 'variable',
+      },
+      iamRoleStatements: [
+        {
+          Effect: 'Allow',
+          Action: ['sqs:*'],
+          Resource: '*',
+        },
+      ],
+      iamManagedPolicies: ['arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess'],
+      vpc: {
+        subnetIds: ['subnet-1234', 'subnet-5678'],
+        securityGroupIds: ['sg-1234'],
+        assignPublicIp: false,
+      },
+      tags: {
+        provider: 'tag',
+      },
+      tasks: [
+        {
+          name: 'my-task',
+          image: 'my-image',
+          vpc: {
+            subnetIds: ['subnet-1234', 'subnet-5678'],
+            securityGroupIds: ['sg-1234'],
+            assignPublicIp: false,
+          },
+          command: ['command'],
+          entryPoint: ['entrypoint'],
+          memory: '0.5GB',
+          cpu: 256,
+          architecture: 'ARM64',
+          environment: {
+            task: 'variable',
+          },
+          tags: {
+            task: 'tag',
+          },
+          service: {
+            desiredCount: 1,
+            maximumPercent: 200,
+            minimumHealthyPercent: 100,
+            spot: false,
+          },
+        },
+      ],
+    }
+  );
+
+  expect(compiled).toMatchSnapshot();
+});
+
 test('single scheduled task', () => {
   const compiled = compile(
     {
@@ -131,6 +194,64 @@ test('single scheduled task', () => {
             container: {},
             service: {},
           },
+        },
+      ],
+    }
+  );
+
+  expect(compiled).toMatchSnapshot();
+});
+
+test('single scheduled task(ARM64)', () => {
+  const compiled = compile(
+    {
+      'my-image': 'image-uri',
+    },
+    {
+      clusterName: undefined,
+      containerInsights: undefined,
+      memory: '0.5GB',
+      cpu: 256,
+      environment: {
+        provider: 'variable',
+      },
+      iamRoleStatements: [
+        {
+          Effect: 'Allow',
+          Action: ['sqs:*'],
+          Resource: '*',
+        },
+      ],
+      iamManagedPolicies: ['arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess'],
+      vpc: {
+        subnetIds: ['subnet-1234', 'subnet-5678'],
+        securityGroupIds: ['sg-1234'],
+        assignPublicIp: false,
+      },
+      tags: {
+        provider: 'tag',
+      },
+      tasks: [
+        {
+          name: 'my-task',
+          image: 'my-image',
+          vpc: {
+            subnetIds: ['subnet-1234', 'subnet-5678'],
+            securityGroupIds: ['sg-1234'],
+            assignPublicIp: false,
+          },
+          command: ['command'],
+          entryPoint: ['entrypoint'],
+          memory: '0.5GB',
+          cpu: 256,
+          architecture: 'ARM64',
+          environment: {
+            task: 'variable',
+          },
+          tags: {
+            task: 'tag',
+          },
+          schedule: 'rate(1 minute)',
         },
       ],
     }
