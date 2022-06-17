@@ -5,6 +5,7 @@ module.exports = {
     clusterName: { type: 'string' },
     memory: { type: 'string' },
     cpu: { type: 'integer', enum: [256, 512, 1024, 2048, 4096] },
+    architecture: { type: 'string' },
     environment: { type: 'object' },
     executionRoleArn: { type: 'string' },
     taskRoleArn: { type: 'string' },
@@ -50,6 +51,7 @@ module.exports = {
             entryPoint: { type: 'array', items: { type: 'string' } },
             memory: { type: 'string' },
             cpu: { type: 'integer', enum: [256, 512, 1024, 2048, 4096] },
+            architecture: { type: 'string' },
             environment: { type: 'object' },
             tags: { type: 'object' },
             service: {

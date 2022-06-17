@@ -2,6 +2,7 @@
 
 exports[`full service task configuration 1`] = `
 Object {
+  "architecture": undefined,
   "clusterName": "my-cluster-name",
   "containerInsights": true,
   "cpu": 512,
@@ -29,6 +30,7 @@ Object {
   "taskRoleArn": "arn:aws:iam::123456:role/my-custom-task-role",
   "tasks": Array [
     Object {
+      "architecture": undefined,
       "command": Array [
         "command",
       ],
@@ -66,6 +68,119 @@ Object {
       },
     },
     Object {
+      "architecture": undefined,
+      "command": Array [],
+      "cpu": 512,
+      "entryPoint": Array [],
+      "environment": Object {
+        "global": "variable",
+      },
+      "executionRoleArn": "arn:aws:iam::123456:role/my-custom-execution-role",
+      "image": "my-image-2",
+      "memory": "1GB",
+      "name": "task-2",
+      "service": Object {
+        "desiredCount": 1,
+        "maximumPercent": 200,
+        "minimumHealthyPercent": 100,
+        "spot": false,
+      },
+      "tags": Object {
+        "global": "tag",
+      },
+      "taskRoleArn": "arn:aws:iam::123456:role/my-custom-task-role",
+      "vpc": Object {
+        "assignPublicIp": false,
+        "securityGroupIds": Array [
+          "sg-1234",
+        ],
+        "subnetIds": Array [
+          "subnet-1234",
+        ],
+      },
+    },
+  ],
+  "vpc": Object {
+    "assignPublicIp": false,
+    "securityGroupIds": Array [
+      "sg-1234",
+    ],
+    "subnetIds": Array [
+      "subnet-1234",
+    ],
+  },
+}
+`;
+
+exports[`full service task configuration(ARM64) 1`] = `
+Object {
+  "architecture": "ARM64",
+  "clusterName": "my-cluster-name",
+  "containerInsights": true,
+  "cpu": 512,
+  "environment": Object {
+    "global": "variable",
+  },
+  "executionRoleArn": "arn:aws:iam::123456:role/my-custom-execution-role",
+  "iamManagedPolicies": Array [
+    "arn:aws:iam::aws:policy/my-managed-policy",
+  ],
+  "iamRoleStatements": Array [
+    Object {
+      "Action": Array [
+        "resource:*",
+      ],
+      "Effect": "Allow",
+      "Resource": "*",
+    },
+  ],
+  "logGroupName": undefined,
+  "memory": "1GB",
+  "tags": Object {
+    "global": "tag",
+  },
+  "taskRoleArn": "arn:aws:iam::123456:role/my-custom-task-role",
+  "tasks": Array [
+    Object {
+      "architecture": "ARM64",
+      "command": Array [
+        "command",
+      ],
+      "cpu": 1024,
+      "entryPoint": Array [
+        "entrypoint",
+      ],
+      "environment": Object {
+        "global": "variable",
+        "task": "variable",
+      },
+      "executionRoleArn": "arn:aws:iam::123456:role/my-custom-execution-role-for-task-1",
+      "image": "my-image-1",
+      "memory": "2GB",
+      "name": "my-task-1",
+      "service": Object {
+        "desiredCount": 2,
+        "maximumPercent": 100,
+        "minimumHealthyPercent": 0,
+        "spot": true,
+      },
+      "tags": Object {
+        "global": "tag",
+        "task": "tag",
+      },
+      "taskRoleArn": "arn:aws:iam::123456:role/my-custom-task-role-for-task-1",
+      "vpc": Object {
+        "assignPublicIp": true,
+        "securityGroupIds": Array [
+          "sg-5678",
+        ],
+        "subnetIds": Array [
+          "subnet-5678",
+        ],
+      },
+    },
+    Object {
+      "architecture": "ARM64",
       "command": Array [],
       "cpu": 512,
       "entryPoint": Array [],
@@ -111,6 +226,7 @@ Object {
 
 exports[`minimal scheduled task configuration 1`] = `
 Object {
+  "architecture": undefined,
   "clusterName": undefined,
   "containerInsights": undefined,
   "cpu": 256,
@@ -124,6 +240,7 @@ Object {
   "taskRoleArn": undefined,
   "tasks": Array [
     Object {
+      "architecture": undefined,
       "command": Array [],
       "cpu": 256,
       "entryPoint": Array [],
@@ -160,6 +277,7 @@ Object {
 
 exports[`minimal service task configuration 1`] = `
 Object {
+  "architecture": undefined,
   "clusterName": undefined,
   "containerInsights": undefined,
   "cpu": 256,
@@ -173,6 +291,7 @@ Object {
   "taskRoleArn": undefined,
   "tasks": Array [
     Object {
+      "architecture": undefined,
       "command": Array [],
       "cpu": 256,
       "entryPoint": Array [],
