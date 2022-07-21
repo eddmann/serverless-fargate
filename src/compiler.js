@@ -1,5 +1,7 @@
 'use strict';
 
+const { get } = require('./util');
+
 const toIdentifier = name => {
   const id = name.replace(/[^0-9A-Za-z]/g, '');
   return id.charAt(0).toUpperCase() + id.slice(1);
@@ -100,46 +102,56 @@ const compileIamRoles = config => ({
   Outputs: {},
 });
 
-const compileTaskDefinition = (images, task) => ({
-  Type: 'AWS::ECS::TaskDefinition',
-  Properties: {
-    ContainerDefinitions: [
-      {
-        Name: task.name,
-        Image: images[task.name],
-        Environment: toEnvironment(task.environment),
-        EntryPoint: task.entryPoint,
-        Command: task.command,
-        PortMappings: [{
-          ContainerPort: task.service.containerPort,
-          HostPort: task.service.hostPort
-        }],
-        LogConfiguration: {
-          LogDriver: 'awslogs',
-          Options: {
-            'awslogs-region': { 'Fn::Sub': '${AWS::Region}' },
-            'awslogs-group': {
-              'Fn::Sub': '${FargateTasksLogGroup}',
+const compileTaskDefinition = (images, task) => {
+  const definition = {
+    Type: 'AWS::ECS::TaskDefinition',
+    Properties: {
+      ContainerDefinitions: [
+        {
+          Name: task.name,
+          Image: images[task.name],
+          Environment: toEnvironment(task.environment),
+          EntryPoint: task.entryPoint,
+          Command: task.command,
+          LogConfiguration: {
+            LogDriver: 'awslogs',
+            Options: {
+              'awslogs-region': { 'Fn::Sub': '${AWS::Region}' },
+              'awslogs-group': {
+                'Fn::Sub': '${FargateTasksLogGroup}',
+              },
+              'awslogs-stream-prefix': 'fargate',
             },
-            'awslogs-stream-prefix': 'fargate',
           },
         },
+      ],
+      Family: task.name,
+      NetworkMode: 'awsvpc',
+      ExecutionRoleArn: task.executionRoleArn || {
+        'Fn::Sub': '${FargateIamExecutionRole}',
       },
-    ],
-    Family: task.name,
-    NetworkMode: 'awsvpc',
-    ExecutionRoleArn: task.executionRoleArn || {
-      'Fn::Sub': '${FargateIamExecutionRole}',
+      TaskRoleArn: task.taskRoleArn || {
+        'Fn::Sub': '${FargateIamTaskRole}',
+      },
+      RequiresCompatibilities: ['FARGATE'],
+      Memory: task.memory,
+      Cpu: task.cpu,
+      Tags: toTags(task.tags),
     },
-    TaskRoleArn: task.taskRoleArn || {
-      'Fn::Sub': '${FargateIamTaskRole}',
-    },
-    RequiresCompatibilities: ['FARGATE'],
-    Memory: task.memory,
-    Cpu: task.cpu,
-    Tags: toTags(task.tags),
-  },
-});
+  };
+
+
+  if (task.service && task.service.containerPort && task.service.hostPort) {
+    definition.Properties.ContainerDefinitions[0].PortMappings = [
+      {
+        ContainerPort: task.service.containerPort,
+        HostPort: task.service.hostPort
+      }
+    ];
+  }
+
+  return definition;
+}
 
 const compileScheduledTask = (identifier, task) => ({
   Type: 'AWS::Events::Rule',
@@ -185,7 +197,7 @@ const compileService = (identifier, task) => ({
       },
     ],
     DesiredCount: task.service.desiredCount,
-    LoadBalancers: task.service.loadBalancers,
+    LoadBalancers: get(task, 'service.loadBalancers', []),
     DeploymentConfiguration: {
       MaximumPercent: task.service.maximumPercent,
       MinimumHealthyPercent: task.service.minimumHealthyPercent,

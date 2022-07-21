@@ -235,6 +235,7 @@ Object {
           "MinimumHealthyPercent": 100,
         },
         "DesiredCount": 1,
+        "LoadBalancers": Array [],
         "NetworkConfiguration": Object {
           "AwsvpcConfiguration": Object {
             "AssignPublicIp": "DISABLED",
@@ -780,6 +781,7 @@ Object {
           "MinimumHealthyPercent": 100,
         },
         "DesiredCount": 1,
+        "LoadBalancers": Array [],
         "NetworkConfiguration": Object {
           "AwsvpcConfiguration": Object {
             "AssignPublicIp": "DISABLED",

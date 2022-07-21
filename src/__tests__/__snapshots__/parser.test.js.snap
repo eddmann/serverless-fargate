@@ -45,7 +45,16 @@ Object {
       "memory": "2GB",
       "name": "my-task-1",
       "service": Object {
+        "containerPort": 5000,
         "desiredCount": 2,
+        "hostPort": 5000,
+        "loadBalancers": Array [
+          Object {
+            "ContainerName": "container-name",
+            "ContainerPort": 5000,
+            "TargetGroupArn": "target-group",
+          },
+        ],
         "maximumPercent": 100,
         "minimumHealthyPercent": 0,
         "spot": true,
@@ -77,7 +86,10 @@ Object {
       "memory": "1GB",
       "name": "task-2",
       "service": Object {
+        "containerPort": undefined,
         "desiredCount": 1,
+        "hostPort": undefined,
+        "loadBalancers": Array [],
         "maximumPercent": 200,
         "minimumHealthyPercent": 100,
         "spot": false,
@@ -182,7 +194,10 @@ Object {
       "memory": "0.5GB",
       "name": "my-task",
       "service": Object {
+        "containerPort": undefined,
         "desiredCount": 1,
+        "hostPort": undefined,
+        "loadBalancers": Array [],
         "maximumPercent": 200,
         "minimumHealthyPercent": 100,
         "spot": false,
