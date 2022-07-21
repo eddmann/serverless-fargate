@@ -45,6 +45,9 @@ const parseTask = (global, name, task) => {
     ...definition,
     service: {
       desiredCount: get(task, 'service.desiredCount', 1),
+      containerPort: task.service.loadBalancer.ContainerPort,
+      hostPort: task.service.loadBalancer.ContainerPort,
+      loadBalancers: [task.service.loadBalancer],
       maximumPercent: get(
         task,
         'service.maximumPercent',

@@ -110,6 +110,10 @@ const compileTaskDefinition = (images, task) => ({
         Environment: toEnvironment(task.environment),
         EntryPoint: task.entryPoint,
         Command: task.command,
+        PortMappings: [{
+          ContainerPort: task.service.containerPort,
+          HostPort: task.service.hostPort
+        }],
         LogConfiguration: {
           LogDriver: 'awslogs',
           Options: {
@@ -181,6 +185,7 @@ const compileService = (identifier, task) => ({
       },
     ],
     DesiredCount: task.service.desiredCount,
+    LoadBalancers: task.service.loadBalancers,
     DeploymentConfiguration: {
       MaximumPercent: task.service.maximumPercent,
       MinimumHealthyPercent: task.service.minimumHealthyPercent,
