@@ -84,6 +84,11 @@ test('full service task configuration', () => {
           maximumPercent: 100,
           minimumHealthyPercent: 0,
           spot: true,
+          loadBalancer: {
+            TargetGroupArn: 'target-group',
+            ContainerPort: 5000,
+            ContainerName: 'container-name'
+          }
         },
         tags: {
           task: 'tag',

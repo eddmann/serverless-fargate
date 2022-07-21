@@ -53,6 +53,11 @@ test('single service task', () => {
             maximumPercent: 200,
             minimumHealthyPercent: 100,
             spot: false,
+            loadBalancer: {
+              TargetGroupArn: 'target-group',
+              ContainerPort: 5000,
+              ContainerName: 'container-name'
+            }
           },
         },
       ],
