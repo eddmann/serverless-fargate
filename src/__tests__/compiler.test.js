@@ -29,6 +29,11 @@ test('single service task', () => {
       tags: {
         provider: 'tag',
       },
+      cloudFormationResource: {
+        task: {},
+        container: {},
+        service: {},
+      },
       tasks: [
         {
           name: 'my-task',
@@ -53,6 +58,11 @@ test('single service task', () => {
             maximumPercent: 200,
             minimumHealthyPercent: 100,
             spot: false,
+          },
+          cloudFormationResource: {
+            task: {},
+            container: {},
+            service: {},
           },
         },
       ],
@@ -91,6 +101,11 @@ test('single scheduled task', () => {
       tags: {
         provider: 'tag',
       },
+      cloudFormationResource: {
+        task: {},
+        container: {},
+        service: {},
+      },
       tasks: [
         {
           name: 'my-task',
@@ -111,6 +126,11 @@ test('single scheduled task', () => {
             task: 'tag',
           },
           schedule: 'rate(1 minute)',
+          cloudFormationResource: {
+            task: {},
+            container: {},
+            service: {},
+          },
         },
       ],
     }
@@ -149,6 +169,11 @@ test('service and scheduled tasks', () => {
       tags: {
         provider: 'tag',
       },
+      cloudFormationResource: {
+        task: {},
+        container: {},
+        service: {},
+      },
       tasks: [
         {
           name: 'my-task-1',
@@ -174,6 +199,17 @@ test('service and scheduled tasks', () => {
             minimumHealthyPercent: 100,
             spot: false,
           },
+          cloudFormationResource: {
+            task: {
+              EphemeralStorage: 5,
+            },
+            container: {
+              StopTimeout: 5,
+            },
+            service: {
+              EnableECSManagedTags: 'true',
+            },
+          },
         },
         {
           name: 'my-task-2',
@@ -194,6 +230,11 @@ test('service and scheduled tasks', () => {
             task: 'tag',
           },
           schedule: 'rate(1 minute)',
+          cloudFormationResource: {
+            task: {},
+            container: {},
+            service: {},
+          },
         },
       ],
     }

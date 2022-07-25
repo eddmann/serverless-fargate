@@ -116,6 +116,19 @@ fargate:
   tags:
     name: value
 
+  # (optional) additional CloudFormation resource properties you wish to include for all compiled tasks.
+  # This provides a means of including properties present in the CloudFormation resource that are not exposed via the plugin DSL.
+  cloudFormationResource:
+    # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html
+    task:
+      EphemeralStorage: 5
+    # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html
+    container:
+      StopTimeout: 5
+    # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html
+    service:
+      EnableECSManagedTags: 'true'
+
   tasks:
     my-task:
       # (optional) unique name for the given task, defaults to the task key name.
@@ -190,6 +203,19 @@ fargate:
       # (optional) schedule expression used to configure the task to be executed at a desired time, as opposed to being a service.
       # https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html
       schedule: 'rate(1 minute)'
+
+      # (optional) additional CloudFormation resource properties you wish to include for this compiled task.
+      # This provides a means of including properties present in the CloudFormation resource that are not exposed via the plugin DSL.
+      cloudFormationResource:
+        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html
+        task:
+          EphemeralStorage: 5
+        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html
+        container:
+          StopTimeout: 5
+        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html
+        service:
+          EnableECSManagedTags: 'true'
 ```
 
 ---

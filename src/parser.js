@@ -30,6 +30,20 @@ const parseTask = (global, name, task) => {
       ...(task.environment || {}),
     },
     tags: { ...global.tags, ...(task.tags || {}) },
+    cloudFormationResource: {
+      task: {
+        ...global.cloudFormationResource.task,
+        ...get(task, 'cloudFormationResource.task', {}),
+      },
+      container: {
+        ...global.cloudFormationResource.container,
+        ...get(task, 'cloudFormationResource.container', {}),
+      },
+      service: {
+        ...global.cloudFormationResource.service,
+        ...get(task, 'cloudFormationResource.service', {}),
+      },
+    },
   };
 
   if (task.schedule) {
@@ -78,6 +92,11 @@ module.exports = config => {
       assignPublicIp: get(config, 'vpc.assignPublicIp', false),
     },
     tags: config.tags || {},
+    cloudFormationResource: {
+      task: get(config, 'cloudFormationResource.task', {}),
+      container: get(config, 'cloudFormationResource.container', {}),
+      service: get(config, 'cloudFormationResource.service', {}),
+    },
   };
 
   return {

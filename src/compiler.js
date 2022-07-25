@@ -120,6 +120,7 @@ const compileTaskDefinition = (images, task) => ({
             'awslogs-stream-prefix': 'fargate',
           },
         },
+        ...task.cloudFormationResource.container,
       },
     ],
     Family: task.name,
@@ -134,6 +135,7 @@ const compileTaskDefinition = (images, task) => ({
     Memory: task.memory,
     Cpu: task.cpu,
     Tags: toTags(task.tags),
+    ...task.cloudFormationResource.task,
   },
 });
 
@@ -195,6 +197,7 @@ const compileService = (identifier, task) => ({
     },
     PropagateTags: 'TASK_DEFINITION',
     Tags: toTags(task.tags),
+    ...task.cloudFormationResource.service,
   },
 });
 

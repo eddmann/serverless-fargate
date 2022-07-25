@@ -60,6 +60,17 @@ test('full service task configuration', () => {
     tags: {
       global: 'tag',
     },
+    cloudFormationResource: {
+      task: {
+        EphemeralStorage: 5,
+      },
+      container: {
+        StopTimeout: 5,
+      },
+      service: {
+        EnableECSManagedTags: 'true',
+      },
+    },
     tasks: {
       'task-1': {
         name: 'my-task-1',
@@ -87,6 +98,24 @@ test('full service task configuration', () => {
         },
         tags: {
           task: 'tag',
+        },
+        cloudFormationResource: {
+          task: {
+            RuntimePlatform: {
+              CpuArchitecture: 'ARM64',
+              OperatingSystemFamily: 'LINUX',
+            },
+          },
+          container: {
+            StartTimeout: 5,
+          },
+          service: {
+            LoadBalancers: {
+              ContainerName: 'container-name',
+              ContainerPort: 8080,
+              TargetGroupArn: 'target-group-arn',
+            },
+          },
         },
       },
       'task-2': {

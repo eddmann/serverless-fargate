@@ -235,6 +235,7 @@ Object {
           "MinimumHealthyPercent": 100,
         },
         "DesiredCount": 1,
+        "EnableECSManagedTags": "true",
         "NetworkConfiguration": Object {
           "AwsvpcConfiguration": Object {
             "AssignPublicIp": "DISABLED",
@@ -291,9 +292,11 @@ Object {
               },
             },
             "Name": "my-task-1",
+            "StopTimeout": 5,
           },
         ],
         "Cpu": 256,
+        "EphemeralStorage": 5,
         "ExecutionRoleArn": Object {
           "Fn::Sub": "\${FargateIamExecutionRole}",
         },

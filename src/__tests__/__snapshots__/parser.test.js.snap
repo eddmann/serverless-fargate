@@ -2,6 +2,17 @@
 
 exports[`full service task configuration 1`] = `
 Object {
+  "cloudFormationResource": Object {
+    "container": Object {
+      "StopTimeout": 5,
+    },
+    "service": Object {
+      "EnableECSManagedTags": "true",
+    },
+    "task": Object {
+      "EphemeralStorage": 5,
+    },
+  },
   "clusterName": "my-cluster-name",
   "containerInsights": true,
   "cpu": 512,
@@ -29,6 +40,27 @@ Object {
   "taskRoleArn": "arn:aws:iam::123456:role/my-custom-task-role",
   "tasks": Array [
     Object {
+      "cloudFormationResource": Object {
+        "container": Object {
+          "StartTimeout": 5,
+          "StopTimeout": 5,
+        },
+        "service": Object {
+          "EnableECSManagedTags": "true",
+          "LoadBalancers": Object {
+            "ContainerName": "container-name",
+            "ContainerPort": 8080,
+            "TargetGroupArn": "target-group-arn",
+          },
+        },
+        "task": Object {
+          "EphemeralStorage": 5,
+          "RuntimePlatform": Object {
+            "CpuArchitecture": "ARM64",
+            "OperatingSystemFamily": "LINUX",
+          },
+        },
+      },
       "command": Array [
         "command",
       ],
@@ -66,6 +98,17 @@ Object {
       },
     },
     Object {
+      "cloudFormationResource": Object {
+        "container": Object {
+          "StopTimeout": 5,
+        },
+        "service": Object {
+          "EnableECSManagedTags": "true",
+        },
+        "task": Object {
+          "EphemeralStorage": 5,
+        },
+      },
       "command": Array [],
       "cpu": 512,
       "entryPoint": Array [],
@@ -111,6 +154,11 @@ Object {
 
 exports[`minimal scheduled task configuration 1`] = `
 Object {
+  "cloudFormationResource": Object {
+    "container": Object {},
+    "service": Object {},
+    "task": Object {},
+  },
   "clusterName": undefined,
   "containerInsights": undefined,
   "cpu": 256,
@@ -124,6 +172,11 @@ Object {
   "taskRoleArn": undefined,
   "tasks": Array [
     Object {
+      "cloudFormationResource": Object {
+        "container": Object {},
+        "service": Object {},
+        "task": Object {},
+      },
       "command": Array [],
       "cpu": 256,
       "entryPoint": Array [],
@@ -160,6 +213,11 @@ Object {
 
 exports[`minimal service task configuration 1`] = `
 Object {
+  "cloudFormationResource": Object {
+    "container": Object {},
+    "service": Object {},
+    "task": Object {},
+  },
   "clusterName": undefined,
   "containerInsights": undefined,
   "cpu": 256,
@@ -173,6 +231,11 @@ Object {
   "taskRoleArn": undefined,
   "tasks": Array [
     Object {
+      "cloudFormationResource": Object {
+        "container": Object {},
+        "service": Object {},
+        "task": Object {},
+      },
       "command": Array [],
       "cpu": 256,
       "entryPoint": Array [],
