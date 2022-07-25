@@ -74,10 +74,10 @@ fargate:
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_size
   cpu: 256
 
-  # (optional) default CPU architecture you wish to use each task (if not supplied at the task level)
+  # (optional) default CPU architecture you wish to use for each task (if not supplied at the task level)
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#runtime-platform
-  architecture: ARM64
-  
+  architecture: X86_64
+
   # (optional) environment variables which are added to all tasks.
   environment:
     name: value
@@ -175,6 +175,10 @@ fargate:
       # (optional) CPU you wish to allocate to the given task, defaults to the globally supplied CPU value.
       # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_size
       cpu: 256
+
+      # (optional) CPU architecture you wish to use for the given task, defaults to the globally supplied CPU architecture.
+      # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#runtime-platform
+      architecture: ARM64
 
       # (optional) environment variables which are added to the given task, these are combined with
       # the globally supplied environment variables.

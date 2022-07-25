@@ -134,12 +134,9 @@ const compileTaskDefinition = (images, task) => ({
     RequiresCompatibilities: ['FARGATE'],
     Memory: task.memory,
     Cpu: task.cpu,
-    RuntimePlatform:
-      task.architecture !== undefined
-        ? {
-            CpuArchitecture: task.architecture,
-          }
-        : undefined,
+    RuntimePlatform: task.architecture && {
+      CpuArchitecture: task.architecture,
+    },
     Tags: toTags(task.tags),
     ...task.cloudFormationResource.task,
   },

@@ -2,6 +2,7 @@
 
 exports[`full service task configuration 1`] = `
 Object {
+  "architecture": "X86_64",
   "cloudFormationResource": Object {
     "container": Object {
       "StopTimeout": 5,
@@ -40,6 +41,7 @@ Object {
   "taskRoleArn": "arn:aws:iam::123456:role/my-custom-task-role",
   "tasks": Array [
     Object {
+      "architecture": "ARM64",
       "cloudFormationResource": Object {
         "container": Object {
           "StartTimeout": 5,
@@ -55,10 +57,7 @@ Object {
         },
         "task": Object {
           "EphemeralStorage": 5,
-          "RuntimePlatform": Object {
-            "CpuArchitecture": "ARM64",
-            "OperatingSystemFamily": "LINUX",
-          },
+          "Family": "task-family",
         },
       },
       "command": Array [
@@ -98,6 +97,7 @@ Object {
       },
     },
     Object {
+      "architecture": "X86_64",
       "cloudFormationResource": Object {
         "container": Object {
           "StopTimeout": 5,
@@ -154,6 +154,7 @@ Object {
 
 exports[`minimal scheduled task configuration 1`] = `
 Object {
+  "architecture": undefined,
   "cloudFormationResource": Object {
     "container": Object {},
     "service": Object {},
@@ -172,6 +173,7 @@ Object {
   "taskRoleArn": undefined,
   "tasks": Array [
     Object {
+      "architecture": undefined,
       "cloudFormationResource": Object {
         "container": Object {},
         "service": Object {},
@@ -213,6 +215,7 @@ Object {
 
 exports[`minimal service task configuration 1`] = `
 Object {
+  "architecture": undefined,
   "cloudFormationResource": Object {
     "container": Object {},
     "service": Object {},
@@ -231,6 +234,7 @@ Object {
   "taskRoleArn": undefined,
   "tasks": Array [
     Object {
+      "architecture": undefined,
       "cloudFormationResource": Object {
         "container": Object {},
         "service": Object {},
