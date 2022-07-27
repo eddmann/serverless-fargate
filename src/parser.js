@@ -24,6 +24,7 @@ const parseTask = (global, name, task) => {
     command: task.command || [],
     entryPoint: task.entryPoint || [],
     memory: task.memory || global.memory,
+    ulimits: get(task, 'ulimits', []),
     cpu: task.cpu || global.cpu,
     environment: {
       ...global.environment,
@@ -48,6 +49,7 @@ const parseTask = (global, name, task) => {
       containerPort: get(task, 'service.loadBalancer.ContainerPort'),
       hostPort: get(task, 'service.loadBalancer.ContainerPort'),
       loadBalancers: get(task, 'service.loadBalancer') ? [task.service.loadBalancer] : [],
+      serviceRegistries: get(task, 'service.serviceRegistry') ? [task.service.serviceRegistry] : [],
       maximumPercent: get(
         task,
         'service.maximumPercent',

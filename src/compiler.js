@@ -123,6 +123,7 @@ const compileTaskDefinition = (images, task) => {
               'awslogs-stream-prefix': 'fargate',
             },
           },
+          Ulimits: task.ulimits
         },
       ],
       Family: task.name,
@@ -198,6 +199,7 @@ const compileService = (identifier, task) => ({
     ],
     DesiredCount: task.service.desiredCount,
     LoadBalancers: get(task, 'service.loadBalancers', []),
+    ServiceRegistries: get(task, 'service.serviceRegistries', []),
     DeploymentConfiguration: {
       MaximumPercent: task.service.maximumPercent,
       MinimumHealthyPercent: task.service.minimumHealthyPercent,
