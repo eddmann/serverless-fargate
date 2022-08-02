@@ -5,6 +5,7 @@ const { get } = require('./util');
 const parseTask = (global, name, task) => {
   const definition = {
     name: task.name || name,
+    dependsOn: task.dependsOn || [],
     image: task.image,
     executionRoleArn: task.executionRoleArn || global.executionRoleArn,
     taskRoleArn: task.taskRoleArn || global.taskRoleArn,
