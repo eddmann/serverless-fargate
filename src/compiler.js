@@ -34,6 +34,7 @@ const compileCluster = config => ({
       Type: 'AWS::Logs::LogGroup',
       Properties: {
         LogGroupName: config.logGroupName,
+        RetentionInDays: config.logRetentionInDays,
         Tags: toTags(config.tags),
       },
     },
