@@ -10,6 +10,7 @@ module.exports = {
     executionRoleArn: { type: 'string' },
     taskRoleArn: { type: 'string' },
     logGroupName: { type: 'string' },
+    logRetentionInDays: { type: 'integer', enum: [1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 2192, 2557, 2922, 3288, 3653] },
     iamRoleStatements: { type: 'array' },
     iamManagedPolicies: { type: 'array', items: { type: 'string' } },
     vpc: {
