@@ -193,6 +193,9 @@ fargate:
       tags:
         name: value
 
+      # (optional) ensure that the creation of task-related resources occur after listed resources.
+      dependsOn: ['MyExampleResource']
+
       # (optional) by default a task is deemed to be a service with a desired count of one,
       # this results in a single long-running process which is a typical use-case of the plugin.
       # however, if you wish to alter this you can include the following configuration options.
