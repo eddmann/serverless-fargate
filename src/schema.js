@@ -3,6 +3,7 @@ module.exports = {
   additionalProperties: false,
   properties: {
     clusterName: { type: 'string' },
+    containerInsights: { type: 'boolean' },
     memory: { type: 'string' },
     cpu: { type: 'integer', enum: [256, 512, 1024, 2048, 4096] },
     architecture: { type: 'string', enum: ['X86_64', 'ARM64'] },
