@@ -85,6 +85,9 @@ fargate:
   # (optional) name used for the provisoned log group.
   logGroupName: my-cluster-log-group
 
+  # (optional) the number of days to retain the log events in the provisoned log group.
+  logRetentionInDays: 365
+
   # (optional) default execution role ARN you wish to use for the task.
   executionRoleArn: arn:aws:iam::123456:role/my-custom-execution-role
 
