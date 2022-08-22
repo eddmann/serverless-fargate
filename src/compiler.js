@@ -177,6 +177,7 @@ const compileScheduledTask = (identifier, task) => ({
 
 const compileService = (identifier, task) => ({
   Type: 'AWS::ECS::Service',
+  DependsOn: task.dependsOn,
   Properties: {
     Cluster: { 'Fn::Sub': '${FargateTasksCluster}' },
     ServiceName: task.name,
