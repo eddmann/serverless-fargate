@@ -43,6 +43,8 @@ test('full service task configuration', () => {
     environment: {
       global: 'variable',
     },
+    logGroupName: 'my-log-group',
+    logRetentionInDays: 356,
     executionRoleArn: 'arn:aws:iam::123456:role/my-custom-execution-role',
     taskRoleArn: 'arn:aws:iam::123456:role/my-custom-task-role',
     iamRoleStatements: [
@@ -76,6 +78,7 @@ test('full service task configuration', () => {
       'task-1': {
         name: 'my-task-1',
         image: 'my-image-1',
+        dependsOn: ['MySampleResource'],
         executionRoleArn:
           'arn:aws:iam::123456:role/my-custom-execution-role-for-task-1',
         taskRoleArn: 'arn:aws:iam::123456:role/my-custom-task-role-for-task-1',

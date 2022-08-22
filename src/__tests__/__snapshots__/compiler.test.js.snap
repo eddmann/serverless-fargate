@@ -70,6 +70,7 @@ Object {
     "FargateTasksLogGroup": Object {
       "Properties": Object {
         "LogGroupName": undefined,
+        "RetentionInDays": undefined,
         "Tags": Array [],
       },
       "Type": "AWS::Logs::LogGroup",
@@ -210,6 +211,7 @@ Object {
     "FargateTasksLogGroup": Object {
       "Properties": Object {
         "LogGroupName": undefined,
+        "RetentionInDays": undefined,
         "Tags": Array [
           Object {
             "Key": "provider",
@@ -220,6 +222,7 @@ Object {
       "Type": "AWS::Logs::LogGroup",
     },
     "Mytask1Service": Object {
+      "DependsOn": undefined,
       "Properties": Object {
         "CapacityProviderStrategy": Array [
           Object {
@@ -263,6 +266,7 @@ Object {
       "Type": "AWS::ECS::Service",
     },
     "Mytask1Task": Object {
+      "DependsOn": undefined,
       "Properties": Object {
         "ContainerDefinitions": Array [
           Object {
@@ -322,6 +326,7 @@ Object {
       "Type": "AWS::ECS::TaskDefinition",
     },
     "Mytask2ScheduledTask": Object {
+      "DependsOn": undefined,
       "Properties": Object {
         "ScheduleExpression": "rate(1 minute)",
         "Targets": Array [
@@ -364,6 +369,7 @@ Object {
       "Type": "AWS::Events::Rule",
     },
     "Mytask2Task": Object {
+      "DependsOn": undefined,
       "Properties": Object {
         "ContainerDefinitions": Array [
           Object {
@@ -539,6 +545,7 @@ Object {
     "FargateTasksLogGroup": Object {
       "Properties": Object {
         "LogGroupName": undefined,
+        "RetentionInDays": undefined,
         "Tags": Array [
           Object {
             "Key": "provider",
@@ -549,6 +556,7 @@ Object {
       "Type": "AWS::Logs::LogGroup",
     },
     "MytaskScheduledTask": Object {
+      "DependsOn": undefined,
       "Properties": Object {
         "ScheduleExpression": "rate(1 minute)",
         "Targets": Array [
@@ -591,6 +599,7 @@ Object {
       "Type": "AWS::Events::Rule",
     },
     "MytaskTask": Object {
+      "DependsOn": undefined,
       "Properties": Object {
         "ContainerDefinitions": Array [
           Object {
@@ -763,6 +772,7 @@ Object {
     "FargateTasksLogGroup": Object {
       "Properties": Object {
         "LogGroupName": undefined,
+        "RetentionInDays": undefined,
         "Tags": Array [
           Object {
             "Key": "provider",
@@ -773,6 +783,7 @@ Object {
       "Type": "AWS::Logs::LogGroup",
     },
     "MytaskService": Object {
+      "DependsOn": undefined,
       "Properties": Object {
         "CapacityProviderStrategy": Array [
           Object {
@@ -815,6 +826,7 @@ Object {
       "Type": "AWS::ECS::Service",
     },
     "MytaskTask": Object {
+      "DependsOn": undefined,
       "Properties": Object {
         "ContainerDefinitions": Array [
           Object {

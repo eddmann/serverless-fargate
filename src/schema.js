@@ -61,6 +61,7 @@ module.exports = {
             architecture: { type: 'string', enum: ['X86_64', 'ARM64'] },
             environment: { type: 'object' },
             tags: { type: 'object' },
+            dependsOn: { type: 'array', items: { type: 'string' } },
             service: {
               type: 'object',
               properties: {

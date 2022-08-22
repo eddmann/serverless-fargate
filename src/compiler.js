@@ -103,6 +103,7 @@ const compileIamRoles = config => ({
 
 const compileTaskDefinition = (images, task) => ({
   Type: 'AWS::ECS::TaskDefinition',
+  DependsOn: task.dependsOn,
   Properties: {
     ContainerDefinitions: [
       {
@@ -145,6 +146,7 @@ const compileTaskDefinition = (images, task) => ({
 
 const compileScheduledTask = (identifier, task) => ({
   Type: 'AWS::Events::Rule',
+  DependsOn: task.dependsOn,
   Properties: {
     ScheduleExpression: task.schedule,
     Targets: [
