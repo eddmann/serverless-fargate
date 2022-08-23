@@ -8,8 +8,8 @@ module.exports = {
     cpu: { type: 'integer', enum: [256, 512, 1024, 2048, 4096] },
     architecture: { type: 'string', enum: ['X86_64', 'ARM64'] },
     environment: { type: 'object' },
-    executionRoleArn: { type: ['object', 'string'] },
-    taskRoleArn: { type: ['object', 'string'] },
+    executionRoleArn: { anyOf: [{ type: 'object' }, { type: 'string' }] },
+    taskRoleArn: { anyOf: [{ type: 'object' }, { type: 'string' }] },
     logGroupName: { type: 'string' },
     logRetentionInDays: {
       type: 'integer',
@@ -42,8 +42,10 @@ module.exports = {
           properties: {
             name: { type: 'string' },
             image: { type: 'string' },
-            executionRoleArn: { type: ['object', 'string'] },
-            taskRoleArn: { type: ['object', 'string'] },
+            executionRoleArn: {
+              anyOf: [{ type: 'object' }, { type: 'string' }],
+            },
+            taskRoleArn: { anyOf: [{ type: 'object' }, { type: 'string' }] },
             vpc: {
               type: 'object',
               properties: {
