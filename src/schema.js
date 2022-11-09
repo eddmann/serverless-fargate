@@ -34,6 +34,14 @@ module.exports = {
         '^.+$': { type: 'string' },
       },
     },
+    cloudFormationResource: {
+      type: 'object',
+      properties: {
+        task: { type: 'object' },
+        container: { type: 'object' },
+        service: { type: 'object' },
+      },
+    },
     tasks: {
       type: 'object',
       patternProperties: {
@@ -75,6 +83,14 @@ module.exports = {
               },
             },
             schedule: { type: 'string' },
+            cloudFormationResource: {
+              type: 'object',
+              properties: {
+                task: { type: 'object' },
+                container: { type: 'object' },
+                service: { type: 'object' },
+              },
+            },
           },
           additionalProperties: false,
         },
