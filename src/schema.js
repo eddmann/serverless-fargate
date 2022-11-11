@@ -23,8 +23,8 @@ module.exports = {
     vpc: {
       type: 'object',
       properties: {
-        securityGroupIds: { type: 'array', items: { type: 'string' } },
-        subnetIds: { type: 'array', items: { type: 'string' } },
+        securityGroupIds: { type: 'array', items: { anyOf: [{ type: 'object' }, { type: 'string' }] } },
+        subnetIds: { type: 'array', items: { anyOf: [{ type: 'object' }, { type: 'string' }] } },
         assignPublicIp: { type: 'boolean' },
       },
     },
@@ -32,6 +32,14 @@ module.exports = {
       type: 'object',
       patternProperties: {
         '^.+$': { type: 'string' },
+      },
+    },
+    cloudFormationResource: {
+      type: 'object',
+      properties: {
+        task: { type: 'object' },
+        container: { type: 'object' },
+        service: { type: 'object' },
       },
     },
     tasks: {
@@ -51,9 +59,9 @@ module.exports = {
               properties: {
                 securityGroupIds: {
                   type: 'array',
-                  items: { type: 'string' },
+                  items: { anyOf: [{ type: 'object' }, { type: 'string' }] },
                 },
-                subnetIds: { type: 'array', items: { type: 'string' } },
+                subnetIds: { type: 'array', items: { anyOf: [{ type: 'object' }, { type: 'string' }] } },
                 assignPublicIp: { type: 'boolean' },
               },
             },
@@ -75,6 +83,14 @@ module.exports = {
               },
             },
             schedule: { type: 'string' },
+            cloudFormationResource: {
+              type: 'object',
+              properties: {
+                task: { type: 'object' },
+                container: { type: 'object' },
+                service: { type: 'object' },
+              },
+            },
           },
           additionalProperties: false,
         },
