@@ -46,7 +46,7 @@ provider:
     name: value
 
   vpc:
-    # (optional) default security groups which are added to tasks that do not contain any overrides.
+    # (required) default security groups which are added to tasks that do not contain any overrides.
     securityGroupIds:
       - sg-12345
 
