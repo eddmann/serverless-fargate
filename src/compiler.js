@@ -139,6 +139,7 @@ const compileTaskDefinition = (images, task) => ({
     RuntimePlatform: task.architecture && {
       CpuArchitecture: task.architecture,
     },
+    Volumes: task.volumes,
     Tags: toTags(task.tags),
     ...task.cloudFormationResource.task,
   },

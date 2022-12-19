@@ -82,6 +82,10 @@ module.exports = {
             environment: { type: 'object' },
             tags: { type: 'object' },
             dependsOn: { type: 'array', items: { type: 'string' } },
+            volumes: {
+              type: 'array', 
+              items: { anyOf: [{ type: 'object' }, { type: 'string' }] }
+              },
             service: {
               type: 'object',
               properties: {

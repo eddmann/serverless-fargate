@@ -22,6 +22,7 @@ const parseTask = (global, name, task) => {
         global.vpc.assignPublicIp
       ),
     },
+    volumes: task.volumes || [],
     command: task.command || [],
     entryPoint: task.entryPoint || [],
     memory: task.memory || global.memory,
