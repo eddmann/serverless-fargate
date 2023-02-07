@@ -124,6 +124,7 @@ const compileTaskDefinition = (images, task) => ({
         },
         ...task.cloudFormationResource.container,
       },
+      ...task.cloudFormationResource.additionalContainers,
     ],
     Family: task.name,
     NetworkMode: 'awsvpc',

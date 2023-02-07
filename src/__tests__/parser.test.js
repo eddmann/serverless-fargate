@@ -111,6 +111,11 @@ test('full service task configuration', () => {
           container: {
             StartTimeout: 5,
           },
+          additionalContainers: [
+            {
+              Name: 'additional-container-name'
+            }
+          ],
           service: {
             LoadBalancers: {
               ContainerName: 'container-name',

@@ -41,6 +41,10 @@ const parseTask = (global, name, task) => {
         ...global.cloudFormationResource.container,
         ...get(task, 'cloudFormationResource.container', {}),
       },
+      additionalContainers: {
+        ...global.cloudFormationResource.additionalContainers,
+        ...get(task, 'cloudFormationResource.additionalContainers', {}),
+      },
       service: {
         ...global.cloudFormationResource.service,
         ...get(task, 'cloudFormationResource.service', {}),
@@ -99,6 +103,7 @@ module.exports = config => {
     cloudFormationResource: {
       task: get(config, 'cloudFormationResource.task', {}),
       container: get(config, 'cloudFormationResource.container', {}),
+      additionalContainers: get(config, 'cloudFormationResource.additionalContainers', []),
       service: get(config, 'cloudFormationResource.service', {}),
     },
   };
