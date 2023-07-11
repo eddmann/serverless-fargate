@@ -106,6 +106,9 @@ Object {
         "container": Object {
           "StopTimeout": 5,
         },
+        "additionalContainer": Object {
+          "Name": "additional-container-name",
+        },
         "service": Object {
           "EnableECSManagedTags": "true",
         },
