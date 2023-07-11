@@ -4,6 +4,12 @@ exports[`full service task configuration 1`] = `
 Object {
   "architecture": "X86_64",
   "cloudFormationResource": Object {
+    "additionalContainers": Array [
+      Object {
+        "Image": "global-additional-container-image",
+        "Name": "global-additional-container-name",
+      },
+    ],
     "container": Object {
       "StopTimeout": 5,
     },
@@ -44,6 +50,16 @@ Object {
     Object {
       "architecture": "ARM64",
       "cloudFormationResource": Object {
+        "additionalContainers": Array [
+          Object {
+            "Image": "global-additional-container-image",
+            "Name": "global-additional-container-name",
+          },
+          Object {
+            "Image": "task-additional-container-image",
+            "Name": "task-additional-container-name",
+          },
+        ],
         "container": Object {
           "StartTimeout": 5,
           "StopTimeout": 5,
@@ -103,11 +119,14 @@ Object {
     Object {
       "architecture": "X86_64",
       "cloudFormationResource": Object {
+        "additionalContainers": Array [
+          Object {
+            "Image": "global-additional-container-image",
+            "Name": "global-additional-container-name",
+          },
+        ],
         "container": Object {
           "StopTimeout": 5,
-        },
-        "additionalContainer": Object {
-          "Name": "additional-container-name",
         },
         "service": Object {
           "EnableECSManagedTags": "true",
@@ -164,6 +183,7 @@ exports[`minimal scheduled task configuration 1`] = `
 Object {
   "architecture": undefined,
   "cloudFormationResource": Object {
+    "additionalContainers": Array [],
     "container": Object {},
     "service": Object {},
     "task": Object {},
@@ -184,6 +204,7 @@ Object {
     Object {
       "architecture": undefined,
       "cloudFormationResource": Object {
+        "additionalContainers": Array [],
         "container": Object {},
         "service": Object {},
         "task": Object {},
@@ -227,6 +248,7 @@ exports[`minimal service task configuration 1`] = `
 Object {
   "architecture": undefined,
   "cloudFormationResource": Object {
+    "additionalContainers": Array [],
     "container": Object {},
     "service": Object {},
     "task": Object {},
@@ -247,6 +269,7 @@ Object {
     Object {
       "architecture": undefined,
       "cloudFormationResource": Object {
+        "additionalContainers": Array [],
         "container": Object {},
         "service": Object {},
         "task": Object {},

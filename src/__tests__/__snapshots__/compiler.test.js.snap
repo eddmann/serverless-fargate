@@ -298,6 +298,10 @@ Object {
             "Name": "my-task-1",
             "StopTimeout": 5,
           },
+          Object {
+            "Image": "additional-container-image",
+            "Name": "additional-container-name",
+          },
         ],
         "Cpu": 256,
         "EphemeralStorage": 5,

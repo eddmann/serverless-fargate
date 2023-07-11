@@ -70,6 +70,12 @@ test('full service task configuration', () => {
       container: {
         StopTimeout: 5,
       },
+      additionalContainers: [
+        {
+          Name: 'global-additional-container-name',
+          Image: 'global-additional-container-image',
+        },
+      ],
       service: {
         EnableECSManagedTags: 'true',
       },
@@ -113,8 +119,9 @@ test('full service task configuration', () => {
           },
           additionalContainers: [
             {
-              Name: 'additional-container-name'
-            }
+              Name: 'task-additional-container-name',
+              Image: 'task-additional-container-image',
+            },
           ],
           service: {
             LoadBalancers: {

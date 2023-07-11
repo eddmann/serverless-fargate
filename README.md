@@ -132,6 +132,11 @@ fargate:
     # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html
     container:
       StopTimeout: 5
+    # container definitions you wish to run alongside the primary container
+    # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html
+    additionalContainers:
+      - Name: 'additional-container-name'
+        Image: 'additional-container-image'
     # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html
     service:
       EnableECSManagedTags: 'true'
@@ -227,6 +232,11 @@ fargate:
         # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html
         container:
           StopTimeout: 5
+        # container definitions you wish to run alongside the primary container
+        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-containerdefinitions.html
+        additionalContainers:
+          - Name: 'additional-container-name'
+            Image: 'additional-container-image'
         # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html
         service:
           EnableECSManagedTags: 'true'

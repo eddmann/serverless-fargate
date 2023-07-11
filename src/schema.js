@@ -45,7 +45,7 @@ module.exports = {
       properties: {
         task: { type: 'object' },
         container: { type: 'object' },
-        additionalContainer: { type: 'array' },
+        additionalContainers: { type: 'array' },
         service: { type: 'object' },
       },
     },

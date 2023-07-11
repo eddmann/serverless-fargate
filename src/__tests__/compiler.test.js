@@ -33,6 +33,7 @@ test('single service task', () => {
       cloudFormationResource: {
         task: {},
         container: {},
+        additionalContainers: [],
         service: {},
       },
       tasks: [
@@ -64,6 +65,7 @@ test('single service task', () => {
           cloudFormationResource: {
             task: {},
             container: {},
+            additionalContainers: [],
             service: {},
           },
         },
@@ -107,6 +109,7 @@ test('single scheduled task', () => {
       cloudFormationResource: {
         task: {},
         container: {},
+        additionalContainers: [],
         service: {},
       },
       tasks: [
@@ -133,6 +136,7 @@ test('single scheduled task', () => {
           cloudFormationResource: {
             task: {},
             container: {},
+            additionalContainers: [],
             service: {},
           },
         },
@@ -177,6 +181,7 @@ test('service and scheduled tasks', () => {
       cloudFormationResource: {
         task: {},
         container: {},
+        additionalContainers: [],
         service: {},
       },
       tasks: [
@@ -212,6 +217,12 @@ test('service and scheduled tasks', () => {
             container: {
               StopTimeout: 5,
             },
+            additionalContainers: [
+              {
+                Name: 'additional-container-name',
+                Image: 'additional-container-image',
+              },
+            ],
             service: {
               EnableECSManagedTags: 'true',
             },
@@ -240,6 +251,7 @@ test('service and scheduled tasks', () => {
           cloudFormationResource: {
             task: {},
             container: {},
+            additionalContainers: [],
             service: {},
           },
         },
