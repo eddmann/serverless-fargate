@@ -27,6 +27,7 @@ const parseTask = (global, name, task) => {
     memory: task.memory || global.memory,
     cpu: task.cpu || global.cpu,
     architecture: task.architecture || global.architecture,
+    portMappings: task.portMappings || [],
     environment: {
       ...global.environment,
       ...(task.environment || {}),
