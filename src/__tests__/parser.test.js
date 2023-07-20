@@ -98,6 +98,17 @@ test('full service task configuration', () => {
         memory: '2GB',
         cpu: 1024,
         architecture: 'ARM64',
+        portMappings: [
+          {
+            containerPort: 5349,
+            hostPort: 5349,
+            protocol: "tcp"
+          },
+          {
+            containerPortRange: "10000-20000",
+            protocol: "udp",
+          }
+        ],
         environment: {
           task: 'variable',
         },

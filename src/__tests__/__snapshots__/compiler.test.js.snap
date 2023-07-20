@@ -296,6 +296,17 @@ Object {
               },
             },
             "Name": "my-task-1",
+            "PortMappings": Array [
+              Object {
+                "containerPort": 5349,
+                "hostPort": 5349,
+                "protocol": "tcp",
+              },
+              Object {
+                "containerPortRange": "10000-20000",
+                "protocol": "udp",
+              },
+            ],
             "StopTimeout": 5,
           },
           Object {
@@ -403,6 +414,7 @@ Object {
               },
             },
             "Name": "my-task-2",
+            "PortMappings": undefined,
           },
         ],
         "Cpu": 256,
@@ -633,6 +645,7 @@ Object {
               },
             },
             "Name": "my-task",
+            "PortMappings": undefined,
           },
         ],
         "Cpu": 256,
@@ -860,6 +873,7 @@ Object {
               },
             },
             "Name": "my-task",
+            "PortMappings": undefined,
           },
         ],
         "Cpu": 256,

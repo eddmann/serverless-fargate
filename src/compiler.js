@@ -112,6 +112,7 @@ const compileTaskDefinition = (images, task) => ({
         Environment: toEnvironment(task.environment),
         EntryPoint: task.entryPoint,
         Command: task.command,
+        PortMappings: task.portMappings,
         LogConfiguration: {
           LogDriver: 'awslogs',
           Options: {

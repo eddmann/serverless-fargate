@@ -7,6 +7,27 @@ module.exports = {
     memory: { type: 'string' },
     cpu: { type: 'integer', enum: [256, 512, 1024, 2048, 4096] },
     architecture: { type: 'string', enum: ['X86_64', 'ARM64'] },
+    portMappings: {
+      type: 'array',
+      items: {
+        type: 'object',
+        'properties': {
+          "containerPort": {
+            type: 'number'
+          },
+          "hostPort": {
+            type: 'number'
+          },
+          "protocol": {
+            type: 'string',
+            enum: ['udp', 'tcp']
+          },
+          "containerPortRange": {
+            type: 'string'
+          },
+        }
+      }
+    },
     environment: { type: 'object' },
     executionRoleArn: { anyOf: [{ type: 'object' }, { type: 'string' }] },
     taskRoleArn: { anyOf: [{ type: 'object' }, { type: 'string' }] },

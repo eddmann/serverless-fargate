@@ -198,6 +198,17 @@ test('service and scheduled tasks', () => {
           memory: '0.5GB',
           cpu: 256,
           architecture: 'ARM64',
+          portMappings: [
+            {
+              containerPort: 5349,
+              hostPort: 5349,
+              protocol: "tcp"
+            },
+            {
+              containerPortRange: "10000-20000",
+              protocol: "udp",
+            }
+          ],
           environment: {
             task: 'variable',
           },

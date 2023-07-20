@@ -95,6 +95,17 @@ Object {
       "image": "my-image-1",
       "memory": "2GB",
       "name": "my-task-1",
+      "portMappings": Array [
+        Object {
+          "containerPort": 5349,
+          "hostPort": 5349,
+          "protocol": "tcp",
+        },
+        Object {
+          "containerPortRange": "10000-20000",
+          "protocol": "udp",
+        },
+      ],
       "service": Object {
         "desiredCount": 2,
         "maximumPercent": 100,
@@ -146,6 +157,7 @@ Object {
       "image": "my-image-2",
       "memory": "1GB",
       "name": "task-2",
+      "portMappings": Array [],
       "service": Object {
         "desiredCount": 1,
         "maximumPercent": 200,
@@ -218,6 +230,7 @@ Object {
       "image": "my-image",
       "memory": "0.5GB",
       "name": "my-task",
+      "portMappings": Array [],
       "schedule": "rate(1 minute)",
       "tags": Object {},
       "taskRoleArn": undefined,
@@ -283,6 +296,7 @@ Object {
       "image": "my-image",
       "memory": "0.5GB",
       "name": "my-task",
+      "portMappings": Array [],
       "service": Object {
         "desiredCount": 1,
         "maximumPercent": 200,
