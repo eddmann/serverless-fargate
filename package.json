@@ -4,7 +4,7 @@
   "description": "Maintain long-running Fargate ECS tasks within your Serverless project",
   "main": "src/index.js",
   "peerDependencies": {
-    "serverless": "2 || 3"
+    "serverless": "2 || 3 || 4"
   },
   "devDependencies": {
     "jest": "^27.5.1"

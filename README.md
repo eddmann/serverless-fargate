@@ -18,6 +18,10 @@ At a high-level the plugin provides the following functionality:
 - Provides _escape-hatches_ to supply custom configuration such as role ARNs/tags etc.
 - Handles both Fargate and Fargate Spot execution environments.
 
+## Compatibility
+
+This plugin supports Serverless Framework versions 2, 3, and 4.
+
 ## Example
 
 Below is an example configuration which highlights all possible available options.
