@@ -1,7 +1,5 @@
 service: serverless-fargate
 
-frameworkVersion: '2 || 3'
-
 configValidationMode: error
 
 provider:
@@ -20,17 +18,21 @@ provider:
       python:
         path: ./
         file: Dockerfile.python
+        platform: linux/amd64
       php:
         path: ./
         file: Dockerfile.php
+        platform: linux/amd64
       node:
         path: ./
         file: Dockerfile.node
+        platform: linux/amd64
 
 plugins:
   - ../src
 
 fargate:
+  architecture: X86_64
   vpc: ${file(./vpc.yml)}
   tasks:
     service-task-1:
