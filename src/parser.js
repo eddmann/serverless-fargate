@@ -59,6 +59,10 @@ const parseTask = (global, name, task) => {
     };
   }
 
+  if (task.service === false) {
+    return definition;
+  }
+
   const isStrictMode = get(task, 'service.strict', false);
 
   return {

@@ -979,3 +979,182 @@ Object {
   },
 }
 `;
+
+exports[`single standalone task 1`] = `
+Object {
+  "Outputs": Object {
+    "MytaskTaskArn": Object {
+      "Value": Object {
+        "Ref": "MytaskTask",
+      },
+    },
+  },
+  "Resources": Object {
+    "FargateIamExecutionRole": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "sts:AssumeRole",
+              ],
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Array [
+                  "ecs-tasks.amazonaws.com",
+                  "events.amazonaws.com",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+          "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceEventsRole",
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "provider",
+            "Value": "tag",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "FargateIamTaskRole": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "sts:AssumeRole",
+              ],
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Array [
+                  "ecs-tasks.amazonaws.com",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess",
+        ],
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": Array [
+                    "sqs:*",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": "*",
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "FargateTaskPolicy",
+          },
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "provider",
+            "Value": "tag",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "FargateTasksCluster": Object {
+      "Properties": Object {
+        "CapacityProviders": Array [
+          "FARGATE",
+          "FARGATE_SPOT",
+        ],
+        "ClusterName": undefined,
+        "ClusterSettings": undefined,
+        "Tags": Array [
+          Object {
+            "Key": "provider",
+            "Value": "tag",
+          },
+        ],
+      },
+      "Type": "AWS::ECS::Cluster",
+    },
+    "FargateTasksLogGroup": Object {
+      "Properties": Object {
+        "LogGroupName": undefined,
+        "RetentionInDays": undefined,
+        "Tags": Array [
+          Object {
+            "Key": "provider",
+            "Value": "tag",
+          },
+        ],
+      },
+      "Type": "AWS::Logs::LogGroup",
+    },
+    "MytaskTask": Object {
+      "DependsOn": undefined,
+      "Properties": Object {
+        "ContainerDefinitions": Array [
+          Object {
+            "Command": Array [
+              "command",
+            ],
+            "EntryPoint": Array [
+              "entrypoint",
+            ],
+            "Environment": Array [
+              Object {
+                "Name": "task",
+                "Value": "variable",
+              },
+            ],
+            "Image": undefined,
+            "LogConfiguration": Object {
+              "LogDriver": "awslogs",
+              "Options": Object {
+                "awslogs-group": Object {
+                  "Fn::Sub": "\${FargateTasksLogGroup}",
+                },
+                "awslogs-region": Object {
+                  "Fn::Sub": "\${AWS::Region}",
+                },
+                "awslogs-stream-prefix": "fargate",
+              },
+            },
+            "Name": "my-task",
+          },
+        ],
+        "Cpu": 256,
+        "ExecutionRoleArn": Object {
+          "Fn::Sub": "\${FargateIamExecutionRole}",
+        },
+        "Family": "my-task",
+        "Memory": "0.5GB",
+        "NetworkMode": "awsvpc",
+        "RequiresCompatibilities": Array [
+          "FARGATE",
+        ],
+        "RuntimePlatform": undefined,
+        "Tags": Array [
+          Object {
+            "Key": "task",
+            "Value": "tag",
+          },
+        ],
+        "TaskRoleArn": Object {
+          "Fn::Sub": "\${FargateIamTaskRole}",
+        },
+      },
+      "Type": "AWS::ECS::TaskDefinition",
+    },
+  },
+}
+`;
