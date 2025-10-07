@@ -42,9 +42,14 @@ const compileCluster = config => ({
   Outputs: {},
 });
 
-const compileIamRoles = config => ({
-  Resources: {
-    FargateIamExecutionRole: {
+const compileIamRoles = config => {
+  const needsExecutionRole = config.tasks.some(task => !task.executionRoleArn);
+  const needsTaskRole = config.tasks.some(task => !task.taskRoleArn);
+
+  const resources = {};
+
+  if (needsExecutionRole) {
+    resources.FargateIamExecutionRole = {
       Type: 'AWS::IAM::Role',
       Properties: {
         AssumeRolePolicyDocument: {
@@ -65,8 +70,11 @@ const compileIamRoles = config => ({
         ],
         Tags: toTags(config.tags),
       },
-    },
-    FargateIamTaskRole: {
+    };
+  }
+
+  if (needsTaskRole) {
+    resources.FargateIamTaskRole = {
       Type: 'AWS::IAM::Role',
       Properties: {
         AssumeRolePolicyDocument: {
@@ -96,10 +104,14 @@ const compileIamRoles = config => ({
         ManagedPolicyArns: config.iamManagedPolicies,
         Tags: toTags(config.tags),
       },
-    },
-  },
-  Outputs: {},
-});
+    };
+  }
+
+  return {
+    Resources: resources,
+    Outputs: {},
+  };
+};
 
 const compileTaskDefinition = (images, task) => ({
   Type: 'AWS::ECS::TaskDefinition',
@@ -156,7 +168,7 @@ const compileScheduledTask = (identifier, task) => ({
         Arn: {
           'Fn::GetAtt': ['FargateTasksCluster', 'Arn'],
         },
-        RoleArn: {
+        RoleArn: task.executionRoleArn || {
           'Fn::GetAtt': ['FargateIamExecutionRole', 'Arn'],
         },
         EcsParameters: {

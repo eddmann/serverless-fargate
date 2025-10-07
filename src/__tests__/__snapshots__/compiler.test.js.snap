@@ -2,7 +2,18 @@
 
 exports[`definition without IAM statements/policies present 1`] = `
 Object {
-  "Outputs": Object {},
+  "Outputs": Object {
+    "MytaskServiceArn": Object {
+      "Value": Object {
+        "Ref": "MytaskService",
+      },
+    },
+    "MytaskTaskArn": Object {
+      "Value": Object {
+        "Ref": "MytaskTask",
+      },
+    },
+  },
   "Resources": Object {
     "FargateIamExecutionRole": Object {
       "Properties": Object {
@@ -74,6 +85,86 @@ Object {
         "Tags": Array [],
       },
       "Type": "AWS::Logs::LogGroup",
+    },
+    "MytaskService": Object {
+      "DependsOn": undefined,
+      "Properties": Object {
+        "CapacityProviderStrategy": Array [
+          Object {
+            "CapacityProvider": "FARGATE",
+            "Weight": 1,
+          },
+        ],
+        "Cluster": Object {
+          "Fn::Sub": "\${FargateTasksCluster}",
+        },
+        "DeploymentConfiguration": Object {
+          "MaximumPercent": undefined,
+          "MinimumHealthyPercent": undefined,
+        },
+        "DesiredCount": 1,
+        "NetworkConfiguration": Object {
+          "AwsvpcConfiguration": Object {
+            "AssignPublicIp": "DISABLED",
+            "SecurityGroups": Array [
+              "sg-1234",
+            ],
+            "Subnets": Array [
+              "subnet-1234",
+              "subnet-5678",
+            ],
+          },
+        },
+        "PropagateTags": "TASK_DEFINITION",
+        "ServiceName": "my-task",
+        "Tags": Array [],
+        "TaskDefinition": Object {
+          "Fn::Sub": "\${MytaskTask}",
+        },
+      },
+      "Type": "AWS::ECS::Service",
+    },
+    "MytaskTask": Object {
+      "DependsOn": undefined,
+      "Properties": Object {
+        "ContainerDefinitions": Array [
+          Object {
+            "Command": Array [],
+            "EntryPoint": Array [],
+            "Environment": Array [],
+            "Image": undefined,
+            "LogConfiguration": Object {
+              "LogDriver": "awslogs",
+              "Options": Object {
+                "awslogs-group": Object {
+                  "Fn::Sub": "\${FargateTasksLogGroup}",
+                },
+                "awslogs-region": Object {
+                  "Fn::Sub": "\${AWS::Region}",
+                },
+                "awslogs-stream-prefix": "fargate",
+              },
+            },
+            "Name": "my-task",
+          },
+        ],
+        "Cpu": 256,
+        "ExecutionRoleArn": Object {
+          "Fn::Sub": "\${FargateIamExecutionRole}",
+        },
+        "Family": "my-task",
+        "Memory": "0.5GB",
+        "NetworkMode": "awsvpc",
+        "RequiresCompatibilities": Array [
+          "FARGATE",
+        ],
+        "RuntimePlatform": undefined,
+        "Tags": Array [],
+        "TaskRoleArn": Object {
+          "Fn::Sub": "\${FargateIamTaskRole}",
+        },
+      },
+      "Type": "AWS::ECS::TaskDefinition",
     },
   },
 }
