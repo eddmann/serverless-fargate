@@ -313,3 +313,67 @@ Object {
   },
 }
 `;
+
+exports[`minimal standalone task configuration 1`] = `
+Object {
+  "architecture": undefined,
+  "cloudFormationResource": Object {
+    "additionalContainers": Array [],
+    "container": Object {},
+    "service": Object {},
+    "task": Object {},
+  },
+  "clusterName": undefined,
+  "containerInsights": undefined,
+  "cpu": 256,
+  "environment": Object {},
+  "executionRoleArn": undefined,
+  "iamManagedPolicies": Array [],
+  "iamRoleStatements": Array [],
+  "logGroupName": undefined,
+  "logRetentionInDays": undefined,
+  "memory": "0.5GB",
+  "tags": Object {},
+  "taskRoleArn": undefined,
+  "tasks": Array [
+    Object {
+      "architecture": undefined,
+      "cloudFormationResource": Object {
+        "additionalContainers": Array [],
+        "container": Object {},
+        "service": Object {},
+        "task": Object {},
+      },
+      "command": Array [],
+      "cpu": 256,
+      "dependsOn": undefined,
+      "entryPoint": Array [],
+      "environment": Object {},
+      "executionRoleArn": undefined,
+      "image": "my-image",
+      "memory": "0.5GB",
+      "name": "my-task",
+      "tags": Object {},
+      "taskRoleArn": undefined,
+      "vpc": Object {
+        "assignPublicIp": false,
+        "securityGroupIds": Array [
+          "sg-1234",
+        ],
+        "subnetIds": Array [
+          "subnet-1234",
+        ],
+      },
+    },
+  ],
+  "vpc": Object {
+    "assignPublicIp": false,
+    "securityGroupIds": Array [
+      "sg-1234",
+    ],
+    "subnetIds": Array [
+      "subnet-1234",
+    ],
+  },
+}
+`;
