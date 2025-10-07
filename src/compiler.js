@@ -231,6 +231,19 @@ const compileTask = (images, task) => {
     };
   }
 
+  if (!task.service) {
+    return {
+      Resources: {
+        [identifier + 'Task']: compileTaskDefinition(images, task),
+      },
+      Outputs: {
+        [identifier + 'TaskArn']: {
+          Value: { Ref: identifier + 'Task' },
+        },
+      },
+    };
+  }
+
   return {
     Resources: {
       [identifier + 'Task']: compileTaskDefinition(images, task),
