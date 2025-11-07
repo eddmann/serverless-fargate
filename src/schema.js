@@ -84,13 +84,19 @@ module.exports = {
             tags: { type: 'object' },
             dependsOn: { type: 'array', items: { type: 'string' } },
             service: {
-              type: 'object',
-              properties: {
-                desiredCount: { type: 'integer' },
-                maximumPercent: { type: 'integer' },
-                minimumHealthyPercent: { type: 'integer' },
-                spot: { type: 'boolean' },
-              },
+              anyOf: [
+                {
+                  type: 'object',
+                  properties: {
+                    desiredCount: { type: 'integer' },
+                    maximumPercent: { type: 'integer' },
+                    minimumHealthyPercent: { type: 'integer' },
+                    spot: { type: 'boolean' },
+                    strict: { type: 'boolean' },
+                  },
+                },
+                { const: false },
+              ],
             },
             schedule: { type: 'string' },
             cloudFormationResource: {

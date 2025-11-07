@@ -147,6 +147,76 @@ test('single scheduled task', () => {
   expect(compiled).toMatchSnapshot();
 });
 
+test('single standalone task', () => {
+  const compiled = compile(
+    {
+      'my-image': 'image-uri',
+    },
+    {
+      clusterName: undefined,
+      containerInsights: undefined,
+      memory: '0.5GB',
+      cpu: 256,
+      architecture: undefined,
+      environment: {
+        provider: 'variable',
+      },
+      iamRoleStatements: [
+        {
+          Effect: 'Allow',
+          Action: ['sqs:*'],
+          Resource: '*',
+        },
+      ],
+      iamManagedPolicies: ['arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess'],
+      vpc: {
+        subnetIds: ['subnet-1234', 'subnet-5678'],
+        securityGroupIds: ['sg-1234'],
+        assignPublicIp: false,
+      },
+      tags: {
+        provider: 'tag',
+      },
+      cloudFormationResource: {
+        task: {},
+        container: {},
+        additionalContainers: [],
+        service: {},
+      },
+      tasks: [
+        {
+          name: 'my-task',
+          image: 'my-image',
+          vpc: {
+            subnetIds: ['subnet-1234', 'subnet-5678'],
+            securityGroupIds: ['sg-1234'],
+            assignPublicIp: false,
+          },
+          command: ['command'],
+          entryPoint: ['entrypoint'],
+          memory: '0.5GB',
+          cpu: 256,
+          architecture: undefined,
+          environment: {
+            task: 'variable',
+          },
+          tags: {
+            task: 'tag',
+          },
+          cloudFormationResource: {
+            task: {},
+            container: {},
+            additionalContainers: [],
+            service: {},
+          },
+        },
+      ],
+    }
+  );
+
+  expect(compiled).toMatchSnapshot();
+});
+
 test('service and scheduled tasks', () => {
   const compiled = compile(
     {

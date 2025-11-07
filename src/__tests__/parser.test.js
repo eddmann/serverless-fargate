@@ -33,6 +33,23 @@ test('minimal scheduled task configuration', () => {
   expect(parsed).toMatchSnapshot();
 });
 
+test('minimal standalone task configuration', () => {
+  const parsed = parse({
+    vpc: {
+      securityGroupIds: ['sg-1234'],
+      subnetIds: ['subnet-1234'],
+    },
+    tasks: {
+      'my-task': {
+        image: 'my-image',
+        service: false,
+      },
+    },
+  });
+
+  expect(parsed).toMatchSnapshot();
+});
+
 test('full service task configuration', () => {
   const parsed = parse({
     clusterName: 'my-cluster-name',
